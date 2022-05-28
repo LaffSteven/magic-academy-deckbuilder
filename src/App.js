@@ -24,14 +24,20 @@ const App = () => {
         })
     })
 
+    const importCardSeed = () => {
+        axios.get('http://localhost:3000/cards/data/seed/import')
+            .then((response) => {
+                console.log("importing card seed data");
+            });
+    }
 
     return(
         <>
-            <h1>Helo World!</h1>
-
             <p>{dbMessage}</p>
             <p>{cardMessage}</p>
             <p>{deckMessage}</p>
+
+            <button onClick={(event) => {importCardSeed()}}>Test Import Route</button>
 
         </>
     )
