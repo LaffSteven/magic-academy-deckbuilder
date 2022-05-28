@@ -5,8 +5,8 @@ import {useState, useEffect} from 'react';
 const App = () => {
 
     const [dbMessage, setDbMessage] = useState()
-    const [cardMessage, setCardMessage] = useState()
-    const [deckMessage, setDeckMessage] = useState()
+    const [cardList, setCardList] = useState([])
+
 
 
     useEffect(()=>{
@@ -14,30 +14,16 @@ const App = () => {
             .then((response) => {
                 setDbMessage(response.data);
         })
-        axios.get('https://magic-academy-api.herokuapp.com/cards/')
+        axios.get('https://magic-academy-api.herokuapp.com/cards')
             .then((response) => {
-                setCardMessage(response.data);
-        })
-        axios.get('https://magic-academy-api.herokuapp.com/decks/')
-            .then((response) => {
-                setDeckMessage(response.data);
+                console.log(response.data);
         })
     })
 
-    const importCardSeed = () => {
-        axios.get('https://magic-academy-api.herokuapp.com/cards/data/seed/import')
-            .then((response) => {
-                console.log("importing card seed data");
-            });
-    }
-
     return(
         <>
-            <p>{dbMessage}</p>
-            <p>{cardMessage}</p>
-            <p>{deckMessage}</p>
 
-            <button onClick={(event) => {importCardSeed()}}>Test Import Route</button>
+            <p>{dbMessage}</p>
 
         </>
     )
