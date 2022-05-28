@@ -25,7 +25,7 @@ const App = () => {
     })
 
     const importCardSeed = () => {
-        axios.get('http://localhost:3000/cards/data/seed/')
+        axios.get('http://localhost:3000/cards/data/seed/import')
             .then((response) => {
                 console.log("importing card seed data");
             });
