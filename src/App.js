@@ -6,13 +6,20 @@ const App = () => {
 
     const [dbMessage, setDbMessage] = useState()
 
-    // axios.get('https://magic-academy-api.herokuapp.com/')
 
+    useEffect(()=>{
+        axios.get('https://magic-academy-api.herokuapp.com/')
+            .then((response) => {
+                setDbMessage(response.data);
+            })
+    })
 
 
     return(
         <>
             <h1>Helo World!</h1>
+
+            <p>{dbMessage}</p>
         </>
     )
 }
