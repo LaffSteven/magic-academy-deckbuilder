@@ -8,7 +8,7 @@ const App = () => {
 
 
     useEffect(()=>{
-        axios.get('https://magic-academy-api.herokuapp.com/')
+        axios.get('https://magic-academy-api.herokuapp.com/testing/db/connection-test')
             .then((response) => {
                 setDbMessage(response.data);
             })
