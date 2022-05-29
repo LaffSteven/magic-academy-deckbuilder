@@ -16,7 +16,7 @@ const App = () => {
         })
         axios.get('https://magic-academy-api.herokuapp.com/cards')
             .then((response) => {
-                console.log(response.data);
+                setCardList(cardList);
         })
     })
 
@@ -24,6 +24,12 @@ const App = () => {
         <>
 
             <p>{dbMessage}</p>
+
+            <ul>
+                {cardList.map((card) => {
+                    <li>{card}</li>
+                })}
+            </ul>
 
         </>
     )
