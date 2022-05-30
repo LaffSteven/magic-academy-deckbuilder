@@ -10,19 +10,27 @@ const App = () => {
 
 
     useEffect(()=>{
-        axios.get('https://magic-academy-api.herokuapp.com/')
+        // axios.get('https://magic-academy-api.herokuapp.com/')
+        //     .then((response) => {
+        //         setDbPort(response.data);
+        // })
+        axios.get('http://localhost:3000/')
             .then((response) => {
                 setDbPort(response.data);
         })
         // axios.get(`http://localhost:3000/cards`)
         //     .then((response) => {
-        //         // console.log(response);
         //         setCardList(response.data);
         // })
     })
 
     const getSampleCards = () => {
-        axios.get(`https://magic-academy-api.herokuapp.com:${dbPort}/cards`)
+        // axios.get(`https://magic-academy-api.herokuapp.com/cards`)
+        //     .then((response) => {
+        //         console.log(response);
+        //         setCardList(response.data);
+        // })
+        axios.get(`http://localhost:3000/cards`)
             .then((response) => {
                 console.log(response);
                 setCardList(response.data);
@@ -38,7 +46,7 @@ const App = () => {
             <ul>
                 {cardList.map((card) => {
                     return(
-                        <li>{card.name}</li>
+                        <li key={card.id}>{card.name}</li>
                     )
                 })}
             </ul>
