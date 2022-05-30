@@ -32,7 +32,7 @@ const App = () => {
     return(
         <>
 
-            <p>{dbMessage}</p>
+            <p>Connected on {dbPort}</p>
 
             <button onClick={(event) => {getSampleCards()}}> Get Cards </button>
             <ul>
