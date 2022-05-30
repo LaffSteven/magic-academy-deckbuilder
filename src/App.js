@@ -14,17 +14,17 @@ const App = () => {
             .then((response) => {
                 setDbMessage(response.data);
         })
-        axios.get(`https://magic-academy-api.herokuapp.com:${dbMessage}/cards`)
-            .then((response) => {
-                // console.log(response);
-                setCardList(response.data);
-        })
+        // axios.get(`http://localhost:3000/cards`)
+        //     .then((response) => {
+        //         // console.log(response);
+        //         setCardList(response.data);
+        // })
     })
 
     const getSampleCards = () => {
-        axios.get(`http://localhost:3000/cards`)
+        axios.get(`https://magic-academy-api.herokuapp.com/cards`)
             .then((response) => {
-                // console.log(response);
+                console.log(response);
                 setCardList(response.data);
         })
     }
@@ -36,9 +36,9 @@ const App = () => {
 
             <button onClick={(event) => {getSampleCards()}}> Get Cards </button>
             <ul>
-                {cardList.map((item) => {
+                {cardList.map((card) => {
                     return(
-                        <li>{item}</li>
+                        <li>{card.name}</li>
                     )
                 })}
             </ul>
