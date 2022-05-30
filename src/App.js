@@ -14,20 +14,32 @@ const App = () => {
             .then((response) => {
                 setDbMessage(response.data);
         })
-        axios.get('https://magic-academy-api.herokuapp.com/cards')
+        axios.get(`https://magic-academy-api.herokuapp.com:${dbMessage}/cards`)
             .then((response) => {
-                setCardList(cardList);
+                // console.log(response);
+                setCardList(response.data);
         })
     })
+
+    const getSampleCards = () => {
+        axios.get(`http://localhost:3000/cards`)
+            .then((response) => {
+                // console.log(response);
+                setCardList(response.data);
+        })
+    }
 
     return(
         <>
 
             <p>{dbMessage}</p>
 
+            <button onClick={(event) => {getSampleCards()}}> Get Cards </button>
             <ul>
-                {cardList.map((card) => {
-                    <li>{card}</li>
+                {cardList.map((item) => {
+                    return(
+                        <li>{item}</li>
+                    )
                 })}
             </ul>
 
