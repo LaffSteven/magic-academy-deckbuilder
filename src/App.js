@@ -4,7 +4,7 @@ import {useState, useEffect} from 'react';
 
 const App = () => {
 
-    const [dbMessage, setDbMessage] = useState()
+    const [dbPort, setDbPort] = useState()
     const [cardList, setCardList] = useState([])
 
 
@@ -12,7 +12,7 @@ const App = () => {
     useEffect(()=>{
         axios.get('https://magic-academy-api.herokuapp.com/')
             .then((response) => {
-                setDbMessage(response.data);
+                setDbPort(response.data);
         })
         // axios.get(`http://localhost:3000/cards`)
         //     .then((response) => {
