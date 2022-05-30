@@ -22,7 +22,7 @@ const App = () => {
     })
 
     const getSampleCards = () => {
-        axios.get(`https://magic-academy-api.herokuapp.com/cards`)
+        axios.get(`https://magic-academy-api.herokuapp.com:${dbPort}/cards`)
             .then((response) => {
                 console.log(response);
                 setCardList(response.data);
