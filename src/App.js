@@ -7,22 +7,23 @@ const App = () => {
 
     const [dbPort, setDbPort] = useState()
 
-    useEffect(()=>{
-        // axios.get('https://magic-academy-api.herokuapp.com/')
-        //     .then((response) => {
-        //         setDbPort(response.data);
-        // })
-        axios.get('http://localhost:3000/')
-            .then((response) => {
-                setDbPort(response.data);
-        })
-    })
+    // useEffect(()=>{
+    //     // axios.get('https://magic-academy-api.herokuapp.com/')
+    //     //     .then((response) => {
+    //     //         setDbPort(response.data);
+    //     // })
+    //     // axios.get('http://localhost:3000/')
+    //     //     .then((response) => {
+    //     //         setDbPort(response.data);
+    //     // })
+    // })
 
     return(
-        <>
-            <p>Connected on {dbPort}</p>
-            <Cards />
-        </>
+    <>
+        <p>App Loaded</p>
+        <br/>
+        <hr/>
+    </>
     )
 }
 

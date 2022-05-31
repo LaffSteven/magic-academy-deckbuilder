@@ -6,7 +6,7 @@ const Card = (props) => {
     const [card, setCard] = useState(props.card);
 
     return (
-        <img src={card.image_uris.normal} alt=""/>
+        <img src={card.image_uris.small} alt=""/>
     )
 }
 
