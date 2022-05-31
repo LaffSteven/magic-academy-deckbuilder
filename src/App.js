@@ -1,14 +1,18 @@
 import './App.css';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
+import Cards from './components/cards/Cards.js'
 
 const App = () => {
 
     const [dbPort, setDbPort] = useState()
+<<<<<<< HEAD
     const [cardList, setCardList] = useState([])
     // const [deckList, set DeckList] = useState([])
 
 
+=======
+>>>>>>> 9c70961eea10edf746ba71badb8d9212a1fb4208
 
     useEffect(()=>{
         // axios.get('https://magic-academy-api.herokuapp.com/')
@@ -19,24 +23,8 @@ const App = () => {
             .then((response) => {
                 setDbPort(response.data);
         })
-        // axios.get(`http://localhost:3000/cards`)
-        //     .then((response) => {
-        //         setCardList(response.data);
-        // })
-    })
 
-    const getSampleCards = () => {
-        // axios.get(`https://magic-academy-api.herokuapp.com/cards`)
-        //     .then((response) => {
-        //         console.log(response);
-        //         setCardList(response.data);
-        // })
-        axios.get(`http://localhost:3000/cards`)
-            .then((response) => {
-                console.log(response);
-                setCardList(response.data);
-        })
-    }
+    })
 
     const cardDelete = (cardData) => {
       console.log(cardData._id);
@@ -49,6 +37,7 @@ const App = () => {
     }
 
     return(
+<<<<<<< HEAD
         <>
 
             <p>Connected on {dbPort}</p>
@@ -68,6 +57,14 @@ const App = () => {
             </ul>
 
         </>
+=======
+    <>
+        <p>App Loaded on port {dbPort}</p>
+        <br/>
+        <hr/>
+        <Cards />
+    </>
+>>>>>>> 9c70961eea10edf746ba71badb8d9212a1fb4208
     )
 }
 
