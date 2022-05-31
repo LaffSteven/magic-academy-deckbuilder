@@ -29,9 +29,8 @@ const CardSearch = () => {
                     console.log(card.name);
                 });
         });
-
-
     }
+    
     const handleSearchSubmit = (event) => {
         event.preventDefault();
         if (searchTerm) {
