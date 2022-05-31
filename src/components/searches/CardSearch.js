@@ -30,7 +30,11 @@ const CardSearch = () => {
                 });
         });
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 084c13fbbf0858107ed7cb394ad5aa6e459ad232
     const handleSearchSubmit = (event) => {
         event.preventDefault();
         if (searchTerm) {
