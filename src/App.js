@@ -15,14 +15,14 @@ const App = () => {
 >>>>>>> 9c70961eea10edf746ba71badb8d9212a1fb4208
 
     useEffect(()=>{
-        // axios.get('https://magic-academy-api.herokuapp.com/')
-        //     .then((response) => {
-        //         setDbPort(response.data);
-        // })
-        axios.get('http://localhost:3000/')
+        axios.get('https://magic-academy-api.herokuapp.com/')
             .then((response) => {
                 setDbPort(response.data);
         })
+        // axios.get('http://localhost:3000/')
+        //     .then((response) => {
+        //         setDbPort(response.data);
+        // })
 
     })
 

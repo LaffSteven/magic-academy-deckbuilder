@@ -9,7 +9,7 @@ const CardSearch = () => {
     const [searchTerm, setSearchTerm] = useState("");
 
     const searchByName = (name) => {
-        axios.get(`http://localhost:3000/cards/search?name=${searchTerm}`)
+        axios.get(`https://magic-academy-api.herokuapp.com/cards/search?name=${searchTerm}`)
             .then((response) => {
                 // setSearchResults(response.data);
                 console.log(response.data);
@@ -18,7 +18,17 @@ const CardSearch = () => {
                 searchResults.forEach((card, i) => {
                     console.log(card.name);
                 });
-            });
+        });
+        // axios.get(`http://localhost:3000/cards/search?name=${searchTerm}`)
+        //     .then((response) => {
+        //         // setSearchResults(response.data);
+        //         console.log(response.data);
+        //         console.log(`Found ${response.data.length} Results`);
+        //         setSearchResults(response.data);
+        //         searchResults.forEach((card, i) => {
+        //             console.log(card.name);
+        //         });
+        // });
 
 
     }
