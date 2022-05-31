@@ -47,7 +47,9 @@ const App = () => {
             <ul>
                 {cardList.map((card) => {
                     return(
-                        <li key={card.id}>{card.name}</li>
+                        <li key={card.id}>
+                            <img src={card.image_uris.small}/>
+                        </li>
                     )
                 })}
                 {}
