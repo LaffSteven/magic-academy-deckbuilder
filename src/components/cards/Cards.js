@@ -19,10 +19,28 @@ const Cards = () => {
         })
     })
 
+    const renderCards = () => {
+        return (
+            <ul>
+                {cards.map((card) => {
+                    return(
+                        <li key={card._id}> <Card card={card}/> <button onClick={(event) => {deleteCard(card._id)}}>Delete</button> </li>
+                    )
+                })}
+            </ul>
+        )
+    }
+
+    const deleteCard = (_id) => {
+        axios.delete(`http://localhost:3000/cards/${_id}`).then(renderCards())
+    }
 
     return (
     <>
         <CardSearch />
+
+        {cards.length > 0 ? renderCards() : null}
+
     </>
     )
 }

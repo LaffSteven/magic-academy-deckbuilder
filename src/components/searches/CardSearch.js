@@ -15,10 +15,11 @@ const CardSearch = () => {
                 console.log(response.data);
                 console.log(`Found ${response.data.length} Results`);
                 setSearchResults(response.data);
+                searchResults.forEach((card, i) => {
+                    console.log(card.name);
+                });
             });
-            searchResults.forEach((card, i) => {
-                console.log(card.name);
-            });
+
 
     }
     const handleSearchSubmit = (event) => {
