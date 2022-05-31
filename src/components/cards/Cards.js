@@ -12,11 +12,16 @@ const Cards = () => {
     const [cards, setCards] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/cards`)
+        axios.get(`https://magic-academy-api.herokuapp.com/cards`)
             .then((response) => {
                 // console.log(response.data);
                 setCards(response.data);
         })
+        // axios.get(`http://localhost:3000/cards`)
+        //     .then((response) => {
+        //         // console.log(response.data);
+        //         setCards(response.data);
+        // })
     })
 
     const renderCards = () => {
@@ -32,7 +37,8 @@ const Cards = () => {
     }
 
     const deleteCard = (_id) => {
-        axios.delete(`http://localhost:3000/cards/${_id}`).then(renderCards())
+        axios.delete(`https://magic-academy-api.herokuapp.com/cards/${_id}`).then(renderCards())
+        // axios.delete(`http://localhost:3000/cards/${_id}`).then(renderCards())
     }
 
     return (
