@@ -6,6 +6,7 @@ const App = () => {
 
     const [dbPort, setDbPort] = useState()
     const [cardList, setCardList] = useState([])
+    const [deckList, set DeckList] = useState([])
 
 
 
@@ -49,6 +50,7 @@ const App = () => {
                         <li key={card.id}>{card.name}</li>
                     )
                 })}
+                {}
             </ul>
 
         </>
