@@ -6,7 +6,7 @@ const App = () => {
 
     const [dbPort, setDbPort] = useState()
     const [cardList, setCardList] = useState([])
-    const [deckList, set DeckList] = useState([])
+    // const [deckList, set DeckList] = useState([])
 
 
 
@@ -38,6 +38,16 @@ const App = () => {
         })
     }
 
+    const cardDelete = (cardData) => {
+      console.log(cardData._id);
+      axios.delete(`http://localhost:3000/cards/${cardData._id}`)
+        // .then(() => {
+        // axios.get(`http://localhost:3000/cards`).then((response) => {
+        //   setCardList(response.data)
+        // })
+      // })
+    }
+
     return(
         <>
 
@@ -49,7 +59,9 @@ const App = () => {
                     return(
                         <li key={card.id}>
                             <img src={card.image_uris.small}/>
+                            <button onClick= {(event) => {cardDelete(card)}}> Delete </button>
                         </li>
+
                     )
                 })}
                 {}
