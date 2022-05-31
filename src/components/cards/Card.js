@@ -18,12 +18,13 @@ const Card = (props) => {
             <div>
                 <img src={card.image_uris.normal} alt={card.name} />
                 <CardInfo cardData={card}/>
-                <button onClick={toggleShowCardInfo()}> Hide </button>
+                <button onClick={(event) => {toggleShowCardInfo()}}> Hide </button>
             </div>
         )
     }
 
-    const toggleShowCardInfo = () => {
+    const toggleShowCardInfo = (event) => {
+        console.log(`Setting showCardInfo to ${!showCardInfo}`);
         setShowCardInfo(!showCardInfo);
     }
 
