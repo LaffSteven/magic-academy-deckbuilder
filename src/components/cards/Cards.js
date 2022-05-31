@@ -2,7 +2,7 @@ import React from 'react';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
 import Card from './Card.js';
-// import CardSearch from '../searches/CardSearch.js';
+import CardSearch from '../searches/CardSearch.js';
 // import NewCard from './NewCard.js'
 
 
@@ -17,19 +17,12 @@ const Cards = () => {
                 // console.log(response.data);
                 setCards(response.data);
         })
-        console.log(cards);
     })
 
 
     return (
     <>
-        <ul>
-            {cards.map((card) => {
-                return(
-                    <li key={card.id}> <Card card={card}/> </li>
-                )
-            })}
-        </ul>
+        <CardSearch />
     </>
     )
 }
@@ -43,6 +36,15 @@ export default Cards
 // <br/>
 // <br/>
 // <hr/>
+// <ul>
+//     {cards.map((card) => {
+//         return(
+//             <li key={card.id}> <Card card={card}/> </li>
+//         )
+//     })}
+// </ul>
+
+
 // <ul>
 //     {cards.map((card) => {
 //         return(

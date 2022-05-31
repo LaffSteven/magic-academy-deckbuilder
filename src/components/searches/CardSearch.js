@@ -14,7 +14,12 @@ const CardSearch = () => {
                 // setSearchResults(response.data);
                 console.log(response.data);
                 console.log(`Found ${response.data.length} Results`);
+                setSearchResults(response.data);
             });
+            searchResults.forEach((card, i) => {
+                console.log(card.name);
+            });
+
     }
     const handleSearchSubmit = (event) => {
         event.preventDefault();
@@ -23,7 +28,6 @@ const CardSearch = () => {
             searchByName(searchTerm);
         } else {
             console.log(`No Results found for ${searchTerm}`);
-            setSearchResults()
         }
 
     }
@@ -32,38 +36,26 @@ const CardSearch = () => {
         setSearchTerm(event.target.value);
     }
 
-    const renderSearchResults = () => {
-            return (
-                <div>
-                    <h3>Search Results</h3>
-                    <br/>
-                    <div>
-                    {searchResults.map((card) => {
-                        <img src={card.image_uris.small}/>
-                    })}
-                    </div>
-                </div>
-            )
-    }
-
     return (
     <>
         <form onSubmit={handleSearchSubmit}>
             Card Name: <input type="text" onChange={handleSearchTermChange}/>
             <input type="submit" value="Search"/>
         </form>
-        <div>
-            <h3>Search Results</h3>
-            <br/>
-            <div>
-            {searchResults.map((card) => {
-                <img src={card.image_uris.small}/>
-            })}
-            </div>
-        </div>
+        <br/>
+        <hr/>
+        <p>{searchResults.length}</p>
+        <ul>
+            {searchResults.map((card) => {<li key={card.id}> {card.name} </li>})}
+        </ul>
     </>
     )
 
 }
 
 export default CardSearch
+
+
+// {searchResults.map((card) => {
+//     <img src={card.image_uris.small}/>
+// })}
