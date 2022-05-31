@@ -54,8 +54,9 @@ const CardSearch = () => {
             <input type="submit" value="Search"/>
         </form>
         <br/>
+        <p>{searchResults.length} results for {searchTerm}</p>
         <hr/>
-        <p>{searchResults.length}</p>
+
         <ul>
             {searchResults.map((card) => {<li key={card.id}> {card.name} </li>})}
         </ul>
