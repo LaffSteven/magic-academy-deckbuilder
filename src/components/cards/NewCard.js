@@ -13,10 +13,14 @@ const NewCardForm = () => {
     const [oracleText, setOracleText] = useState("");
     const [artist, setArtist] = useState("");
     const [rarity, setRarity] = useState("");
+    const [typeLine, setTypeLine] = useState("");
+    const [power, setPower] = useState("");
+    const [toughness, setToughness] = useState("");
+    const [loyalty, setLoyalty] = useState("");
 
     const renderNewCardForm = (event) => {
         return (
-            <form onSubmit={handleNewCardSubmit}>
+            <form onSubmit={handleNewCardSubmit} className="flex-box flex-column justify-center align-content-center">
                 <h2>Enter New Card Data</h2>
                 <table>
                     <tbody>
@@ -26,10 +30,47 @@ const NewCardForm = () => {
                     </tr>
                     <tr>
                         <td>Mana Cost</td>
-                        <td> <input type="text" onChange={(event)}/> </td>
+                        <td> <input type="text" onChange={handleManaCostChange}/> </td>
+                    </tr>
+                    <tr>
+                        <td>Image URL</td>
+                        <td> <input type="text" onChange={handleImageChange}/> </td>
+                    </tr>
+                    <tr>
+                        <td>Type Line</td>
+                        <td> <input type="text" onChange={handleTypeLineChange}/> </td>
+                    </tr>
+                    <tr>
+                        <td>Oracle Text</td>
+                        <td> <input type="text" onChange={handleOracleTextChange}/> </td>
+                    </tr>
+                    <tr>
+                        <td>Flavor Text</td>
+                        <td> <input type="text" onChange={handleOracleTextChange}/> </td>
+                    </tr>
+                    <tr>
+                        <td>Power</td>
+                        <td> <input type="text" onChange={handlePowerChange}/> </td>
+                    </tr>
+                    <tr>
+                        <td>Toughness</td>
+                        <td> <input type="text" onChange={handleToughnessChange}/> </td>
+                    </tr>
+                    <tr>
+                        <td>Loyalty</td>
+                        <td> <input type="text" onChange={handleLoyaltyChange}/> </td>
+                    </tr>
+                    <tr>
+                        <td>Rarity</td>
+                        <td> <input type="text" onChange={handleRarityChange}/> </td>
+                    </tr>
+                    <tr>
+                        <td>Artist</td>
+                        <td> <input type="text" onChange={handleArtistChange}/> </td>
                     </tr>
                     </tbody>
                 </table>
+                <input type="submit" value="Save New Card" />
             </form>
         )
     }
@@ -52,9 +93,12 @@ const NewCardForm = () => {
                 set_name: setName,
                 flavor_text: flavorText,
                 oracle_text: oracleText,
+                power: power,
+                toughness: toughness,
+                loyalty: loyalty,
                 artist: artist,
                 rarity: rarity,
-
+                type_line: typeLine
             }
         )
     }
@@ -82,6 +126,18 @@ const NewCardForm = () => {
     }
     const handleRarityChange = (event) => {
         setRarity(event.target.value)
+    }
+    const handleTypeLineChange = (event) => {
+        setTypeLine(event.target.value)
+    }
+    const handlePowerChange = (event) => {
+        setArtist(event.target.value)
+    }
+    const handleToughnessChange = (event) => {
+        setRarity(event.target.value)
+    }
+    const handleLoyaltyChange = (event) => {
+        setTypeLine(event.target.value)
     }
 
 
