@@ -7,10 +7,9 @@ import CardSearch from '../searches/CardSearch.js';
 
 
 
-const Cards = (props) => {
+const Cards = () => {
 
     const [cards, setCards] = useState([]);
-    const [moreCards, setMoreCards] = useState([]);
     const [cardSkip, setCardSkip] = useState(0)
 
     useEffect(()=>{
@@ -19,51 +18,47 @@ const Cards = (props) => {
         //         // console.log(response.data);
         //         setCards(response.data);
         // })
-        axios.get(`http://localhost:3000/cards?skip=0`)
+        if (cards.length == 0) {
+            axios.get(`http://localhost:3000/cards?skip=0`)
+                .then((response) => {
+                    console.log("useEffect");
+                    setCardSkip(response.data.length)
+                    setCards(response.data);
+            })
+        }
+    }, [])
+
+    const loadMoreCards = () => {
+        console.log("Loding more cards");
+        axios.get(`http://localhost:3000/cards?skip=${cardSkip}`)
             .then((response) => {
                 console.log(response.data);
-                // setCards(response.data);
-        })
-    })
+                setCards([...cards, ...response.data])
+                setCardSkip(cardSkip + response.data.length);
+            })
+    }
 
     const renderCards = () => {
+
         return (
             <>
             <h2>Card List</h2>
             <ul>
                 {cards.map((card) => {
                     return(
-                        <li key={card._id}> <Card card={card}/> </li>
+                        <li key={card.id}> <Card card={card}/> </li>
                     )
                 })}
             </ul>
-            <button onClick={(event) => {loadMoreCards()}}>Load More Cards</button>
             </>
-        ).then(() => {
-            setCardSkip(cards.length)
-        })
-    }
-
-    const loadMoreCards = () => {
-        axios.get(`http://localhost:3000/cards?skip=${cardSkip}`)
-            .then((response) => {
-                if (response.data) {
-                    setMoreCards([...cards, ...response.data])
-                    setCardSkip(moreCards.length)
-                }
-            }).then(() => {
-                if (moreCards.length >= cards.length) {
-                    setCards([...moreCards]);
-                }
-            })
+        )
     }
 
     return (
     <>
         <CardSearch />
-
         {cards.length > 0 ? renderCards() : null}
-
+        <button onClick={(event) => {loadMoreCards()}}>Load More Cards</button>
     </>
     )
 }

@@ -16,7 +16,7 @@ const CardInfo = (props) => {
             <p>{cardData.name}</p>
             <p>Mana Cost: {cardData.mana_cost}</p>
             <p>Set Name: {cardData.set_name}</p>
-            <button onClick={(event) => {deleteCard(cardData._id)}}>Delete</button>
+            <button onClick={(event) => {deleteCard(cardData._id)}}> Delete </button>
         </div>
     )
 }
