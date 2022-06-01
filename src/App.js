@@ -2,6 +2,7 @@ import './App.css';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
 import Cards from './components/cards/Cards.js'
+import Decks from './components/decks/Decks.js'
 
 const App = () => {
 
@@ -23,7 +24,9 @@ const App = () => {
         <p>App Loaded on port {dbPort}</p>
         <br/>
         <hr/>
-        <Cards />
+        <section>
+            <Cards />
+        </section>
     </>
     )
 }

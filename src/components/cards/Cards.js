@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react';
 import axios from 'axios';
 import Card from './Card.js';
 import CardSearch from '../searches/CardSearch.js';
-// import NewCard from './NewCard.js'
+import NewCard from './NewCard.js'
 
 
 
@@ -11,6 +11,7 @@ const Cards = () => {
 
     const [cards, setCards] = useState([]);
     const [cardSkip, setCardSkip] = useState(0)
+    const [currentTab, setCurrentTab] = useState("index")
 
     useEffect(()=>{
         // axios.get(`https://magic-academy-api.herokuapp.com/cards`)
@@ -38,27 +39,43 @@ const Cards = () => {
             })
     }
 
-    const renderCards = () => {
-
+    const renderCardIndex = () => {
         return (
-            <>
+        <>
             <h2>Card List</h2>
             <ul>
                 {cards.map((card) => {
                     return(
-                        <li key={card.id}> <Card card={card}/> </li>
+                        <li key={card.id} > <Card card={card}/> </li>
                     )
                 })}
             </ul>
-            </>
+            <button onClick={(event) => {loadMoreCards()}}>Load More Cards</button>
+        </>
         )
+    }
+    const renderCardSearch = () => {
+        return <CardSearch />
+    }
+    const renderNewCard = () => {
+        return <NewCard />
+    }
+
+    const handleTabChange = (tab) => {
+        setCurrentTab(tab);
     }
 
     return (
     <>
-        <CardSearch />
-        {cards.length > 0 ? renderCards() : null}
-        <button onClick={(event) => {loadMoreCards()}}>Load More Cards</button>
+        <nav>
+            <button onClick={(event) =>{handleTabChange("card-index")}}>Index</button>
+            <button onClick={(event) =>{handleTabChange("card-search")}}>Card Search</button>
+            <button onClick={(event) =>{handleTabChange("new-card")}}>New</button>
+            {/* section for details */}
+            {/* section for edit */}
+        </nav>
+        {currentTab == "card-index" ? renderCardIndex() : null}
+
     </>
     )
 }
