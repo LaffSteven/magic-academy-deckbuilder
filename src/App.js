@@ -24,13 +24,13 @@ const App = () => {
         <p>App Loaded on port {dbPort}</p>
         <br/>
         <hr/>
-        <section id="card-section" className="flex-box flex-column flex-nowrap width-100 justify-content center align-content-center">
+        <section id="card-section" className="flex-box flex-column flex-nowrap width-100 justify-content-center align-items-center">
             <Cards />
         </section>
         <br/>
         <hr/>
         <br/>
-        <section id="deck-section" className="flex-box flex-column flex-nowrap width-100 justify-content center align-content-center">
+        <section id="deck-section" className="flex-box flex-column flex-nowrap width-100 justify-content-center align-items-center">
             Deck Stuff Goes Here
         </section>
 

@@ -41,15 +41,17 @@ const Cards = () => {
     const renderCardIndex = () => {
         return (
         <>
-            <h2>Card List</h2>
-            <div className="flex-box flex-row flex-wrap ">
-                {cards.map((card) => {
-                    return(
-                        <div key={card.id} > <Card card={card}/> </div>
-                    )
-                })}
+            <div className="flex-box flex-column flex-nowrap justify-content-spacearound align-items-center">
+                <h2>Card Index</h2>
+                <div className="flex-box flex-row flex-wrap justify-spacearound">
+                    {cards.map((card) => {
+                        return(
+                            <div key={card.id} > <Card card={card}/> </div>
+                        )
+                    })}
+                </div>
+                <button id="load-more-cards-button" onClick={(event) => {loadMoreCards()}}>Load More Cards</button>
             </div>
-            <button onClick={(event) => {loadMoreCards()}}>Load More Cards</button>
         </>
         )
     }
@@ -69,7 +71,7 @@ const Cards = () => {
         <nav>
             <button onClick={(event) =>{handleTabChange("card-index")}}>Index</button>
             <button onClick={(event) =>{handleTabChange("card-search")}}>Card Search</button>
-            <button onClick={(event) =>{handleTabChange("new-card-form")}}>New</button>
+            <button onClick={(event) =>{handleTabChange("new-card-form")}}>Create New Card</button>
             {/* section for details */}
             {/* section for edit */}
         </nav>
