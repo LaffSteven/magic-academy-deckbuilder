@@ -10,43 +10,55 @@ import CardSearch from '../searches/CardSearch.js';
 const Cards = () => {
 
     const [cards, setCards] = useState([]);
+    const [cardSkip, setCardSkip] = useState(0)
 
-    useEffect(() => {
+    useEffect(()=>{
         // axios.get(`https://magic-academy-api.herokuapp.com/cards`)
         //     .then((response) => {
         //         // console.log(response.data);
         //         setCards(response.data);
         // })
-        axios.get(`http://localhost:3000/cards`)
+        if (cards.length == 0) {
+            axios.get(`http://localhost:3000/cards?skip=0`)
+                .then((response) => {
+                    console.log("useEffect");
+                    setCardSkip(response.data.length)
+                    setCards(response.data);
+            })
+        }
+    }, [])
+
+    const loadMoreCards = () => {
+        console.log("Loding more cards");
+        axios.get(`http://localhost:3000/cards?skip=${cardSkip}`)
             .then((response) => {
-                // console.log(response.data);
-                setCards(response.data);
-        })
-    })
+                console.log(response.data);
+                setCards([...cards, ...response.data])
+                setCardSkip(cardSkip + response.data.length);
+            })
+    }
 
     const renderCards = () => {
+
         return (
+            <>
+            <h2>Card List</h2>
             <ul>
                 {cards.map((card) => {
                     return(
-                        <li key={card._id}> <Card card={card}/> <button onClick={(event) => {deleteCard(card._id)}}>Delete</button> </li>
+                        <li key={card.id}> <Card card={card}/> </li>
                     )
                 })}
             </ul>
+            </>
         )
-    }
-
-    const deleteCard = (_id) => {
-        // axios.delete(`https://magic-academy-api.herokuapp.com/cards/${_id}`).then(renderCards())
-        axios.delete(`http://localhost:3000/cards/${_id}`).then(renderCards())
     }
 
     return (
     <>
         <CardSearch />
-
         {cards.length > 0 ? renderCards() : null}
-
+        <button onClick={(event) => {loadMoreCards()}}>Load More Cards</button>
     </>
     )
 }

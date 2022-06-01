@@ -1,6 +1,7 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
 import CardInfo from './CardInfo.js'
+import './css/style.css'
 
 const Card = (props) => {
 
@@ -15,7 +16,7 @@ const Card = (props) => {
 
     const renderCardInfo = () => {
         return (
-            <div>
+            <div className="modal flex-box flex-row">
                 <img src={card.image_uris.normal} alt={card.name} />
                 <CardInfo cardData={card}/>
                 <button onClick={(event) => {toggleShowCardInfo()}}> Hide </button>

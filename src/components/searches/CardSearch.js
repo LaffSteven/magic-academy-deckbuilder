@@ -17,8 +17,8 @@ const CardSearch = () => {
         //         setSearchResults(response.data);
         //         searchResults.forEach((card, i) => {
         //             console.log(card.name);
-        //         });
-        // });
+        //         })
+        // })
         axios.get(`http://localhost:3000/cards/search?name=${searchTerm}`)
             .then((response) => {
                 // setSearchResults(response.data);
@@ -27,10 +27,10 @@ const CardSearch = () => {
                 setSearchResults(response.data);
                 searchResults.forEach((card, i) => {
                     console.log(card.name);
-                });
-        });
+                })
+        })
     }
-    
+
     const handleSearchSubmit = (event) => {
         event.preventDefault();
         if (searchTerm) {

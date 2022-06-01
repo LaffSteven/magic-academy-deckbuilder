@@ -16,7 +16,6 @@ const App = () => {
             .then((response) => {
                 setDbPort(response.data);
         })
-
     })
 
     return(
