@@ -3,10 +3,12 @@ import {useState, useEffect} from 'react';
 
 const Deck = (props) => {
 
-    const [deckList, setDeckList] = useState(props.card);
+    const [deck, setDeck] = useState(props.deck);
 
     return (
-        <img src={card.image_uris.small} alt=""/>
+        <>
+          {deck.name}
+        </>
     )
 }
 
