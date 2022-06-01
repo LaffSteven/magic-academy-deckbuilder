@@ -7,38 +7,55 @@ import CardSearch from '../searches/CardSearch.js';
 
 
 
-const Cards = () => {
+const Cards = (props) => {
 
     const [cards, setCards] = useState([]);
+    const [moreCards, setMoreCards] = useState([]);
+    const [cardSkip, setCardSkip] = useState(0)
 
-    useEffect(() => {
+    useEffect(()=>{
         // axios.get(`https://magic-academy-api.herokuapp.com/cards`)
         //     .then((response) => {
         //         // console.log(response.data);
         //         setCards(response.data);
         // })
-        axios.get(`http://localhost:3000/cards`)
+        axios.get(`http://localhost:3000/cards?skip=0`)
             .then((response) => {
-                // console.log(response.data);
-                setCards(response.data);
+                console.log(response.data);
+                // setCards(response.data);
         })
     })
 
     const renderCards = () => {
         return (
+            <>
+            <h2>Card List</h2>
             <ul>
                 {cards.map((card) => {
                     return(
-                        <li key={card._id}> <Card card={card}/> <button onClick={(event) => {deleteCard(card._id)}}>Delete</button> </li>
+                        <li key={card._id}> <Card card={card}/> </li>
                     )
                 })}
             </ul>
-        )
+            <button onClick={(event) => {loadMoreCards()}}>Load More Cards</button>
+            </>
+        ).then(() => {
+            setCardSkip(cards.length)
+        })
     }
 
-    const deleteCard = (_id) => {
-        // axios.delete(`https://magic-academy-api.herokuapp.com/cards/${_id}`).then(renderCards())
-        axios.delete(`http://localhost:3000/cards/${_id}`).then(renderCards())
+    const loadMoreCards = () => {
+        axios.get(`http://localhost:3000/cards?skip=${cardSkip}`)
+            .then((response) => {
+                if (response.data) {
+                    setMoreCards([...cards, ...response.data])
+                    setCardSkip(moreCards.length)
+                }
+            }).then(() => {
+                if (moreCards.length >= cards.length) {
+                    setCards([...moreCards]);
+                }
+            })
     }
 
     return (
