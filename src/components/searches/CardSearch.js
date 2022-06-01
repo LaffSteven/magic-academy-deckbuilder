@@ -9,17 +9,7 @@ const CardSearch = () => {
     const [searchTerm, setSearchTerm] = useState("");
 
     const searchByName = (name) => {
-        axios.get(`https://magic-academy-api.herokuapp.com/cards/search?name=${searchTerm}`)
-            .then((response) => {
-                // setSearchResults(response.data);
-                console.log(response.data);
-                console.log(`Found ${response.data.length} Results`);
-                setSearchResults(response.data);
-                searchResults.forEach((card, i) => {
-                    console.log(card.name);
-                });
-        });
-        // axios.get(`http://localhost:3000/cards/search?name=${searchTerm}`)
+        // axios.get(`https://magic-academy-api.herokuapp.com/cards/search?name=${searchTerm}`)
         //     .then((response) => {
         //         // setSearchResults(response.data);
         //         console.log(response.data);
@@ -27,11 +17,20 @@ const CardSearch = () => {
         //         setSearchResults(response.data);
         //         searchResults.forEach((card, i) => {
         //             console.log(card.name);
-        //         });
-        // });
-
-
+        //         })
+        // })
+        axios.get(`http://localhost:3000/cards/search?name=${searchTerm}`)
+            .then((response) => {
+                // setSearchResults(response.data);
+                // console.log(response.data);
+                console.log(`Found ${response.data.length} Results`);
+                setSearchResults(response.data);
+                searchResults.forEach((card, i) => {
+                    console.log(card.name);
+                })
+        })
     }
+
     const handleSearchSubmit = (event) => {
         event.preventDefault();
         if (searchTerm) {
@@ -54,8 +53,9 @@ const CardSearch = () => {
             <input type="submit" value="Search"/>
         </form>
         <br/>
+        <p>{searchResults.length} results for {searchTerm}</p>
         <hr/>
-        <p>{searchResults.length}</p>
+
         <ul>
             {searchResults.map((card) => {<li key={card.id}> {card.name} </li>})}
         </ul>

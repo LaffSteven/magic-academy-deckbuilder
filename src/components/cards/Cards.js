@@ -2,7 +2,6 @@ import React from 'react';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
 import Card from './Card.js';
-import Deck from './Deck.js'
 import CardSearch from '../searches/CardSearch.js';
 // import NewCard from './NewCard.js'
 
@@ -11,7 +10,6 @@ import CardSearch from '../searches/CardSearch.js';
 const Cards = () => {
 
     const [cards, setCards] = useState([]);
-    const [decks, setDeck] = useState([]);
 
     useEffect(() => {
         axios.get(`https://magic-academy-api.herokuapp.com/cards`)
