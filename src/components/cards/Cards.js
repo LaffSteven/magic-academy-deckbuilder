@@ -65,26 +65,3 @@ const Cards = () => {
 
 
 export default Cards
-
-
-// <CardSearch />
-// <hr/>
-// <br/>
-// <br/>
-// <hr/>
-// <ul>
-//     {cards.map((card) => {
-//         return(
-//             <li key={card.id}> <Card card={card}/> </li>
-//         )
-//     })}
-// </ul>
-
-
-// <ul>
-//     {cards.map((card) => {
-//         return(
-//             <li key={card.id}> <Card card={card}/> </li>
-//         )
-//     })}
-// </ul>
