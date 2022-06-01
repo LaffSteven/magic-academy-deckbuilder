@@ -76,11 +76,12 @@ const NewCardForm = () => {
     }
 
     const handleNewCardSubmit = (event) => {
+        handleNewCardChange()
         axios.post('http://localhost:3000/cards', newCard)
             .then(() => {console.log(`posted ${newCard.name}`);})
     }
 
-    const handleNewCard = () => {
+    const handleNewCardChange = () => {
         setNewCard(
             {
                 name: newName,
@@ -104,40 +105,52 @@ const NewCardForm = () => {
     }
 
     const handleNameChange = (event) => {
-        setNewName(event.target.value)
+        setNewName(event.target.value);
+        handleNewCardChange();
     }
     const handleManaCostChange = (event) => {
-        setManaCost(event.target.value)
+        setManaCost(event.target.value);
+        handleNewCardChange();
     }
     const handleImageChange = (event) => {
-        setImage(event.target.value)
+        setImage(event.target.value);
+        handleNewCardChange();
     }
     const handleSetNameChange = (event) => {
-        setSetName(event.target.value)
+        setSetName(event.target.value);
+        handleNewCardChange();
     }
     const handleFlavorTextChange = (event) => {
-        setFlavorText(event.target.value)
+        setFlavorText(event.target.value);
+        handleNewCardChange();
     }
     const handleOracleTextChange = (event) => {
-        setOracleText(event.target.value)
+        setOracleText(event.target.value);
+        handleNewCardChange();
     }
     const handleArtistChange = (event) => {
-        setArtist(event.target.value)
+        setArtist(event.target.value);
+        handleNewCardChange();
     }
     const handleRarityChange = (event) => {
-        setRarity(event.target.value)
+        setRarity(event.target.value);
+        handleNewCardChange();
     }
     const handleTypeLineChange = (event) => {
-        setTypeLine(event.target.value)
+        setTypeLine(event.target.value);
+        handleNewCardChange();
     }
     const handlePowerChange = (event) => {
-        setArtist(event.target.value)
+        setArtist(event.target.value);
+        handleNewCardChange();
     }
     const handleToughnessChange = (event) => {
-        setRarity(event.target.value)
+        setRarity(event.target.value);
+        handleNewCardChange();
     }
     const handleLoyaltyChange = (event) => {
-        setTypeLine(event.target.value)
+        setTypeLine(event.target.value);
+        handleNewCardChange();
     }
 
 
