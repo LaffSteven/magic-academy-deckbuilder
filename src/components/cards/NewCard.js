@@ -2,7 +2,7 @@ import React from 'react';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
 
-const NewCard = () => {
+const NewCardForm = () => {
 
     const [newCard, setNewCard] = useState({});
     const [newName, setNewName] = useState("");
@@ -19,6 +19,7 @@ const NewCard = () => {
             <form onSubmit={handleNewCardSubmit}>
                 <h2>Enter New Card Data</h2>
                 <table>
+                    <tbody>
                     <tr>
                         <td>Card Name</td>
                         <td> <input type="text" onChange={handleNameChange}/> </td>
@@ -27,6 +28,7 @@ const NewCard = () => {
                         <td>Mana Cost</td>
                         <td> <input type="text" onChange={(event)}/> </td>
                     </tr>
+                    </tbody>
                 </table>
             </form>
         )
@@ -85,10 +87,10 @@ const NewCard = () => {
 
     return(
         <>
-            New Card Form Goes Here
+        {renderNewCardForm()}
         </>
     )
 
 }
 
-export default NewCard
+export default NewCardForm

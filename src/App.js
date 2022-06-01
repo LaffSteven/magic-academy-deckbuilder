@@ -24,9 +24,16 @@ const App = () => {
         <p>App Loaded on port {dbPort}</p>
         <br/>
         <hr/>
-        <section>
+        <section id="card-section" className="flex-box flex-column flex-nowrap width-100 justify-content center align-content-center">
             <Cards />
         </section>
+        <br/>
+        <hr/>
+        <br/>
+        <section id="deck-section" className="flex-box flex-column flex-nowrap width-100 justify-content center align-content-center">
+            Deck Stuff Goes Here
+        </section>
+
     </>
     )
 }

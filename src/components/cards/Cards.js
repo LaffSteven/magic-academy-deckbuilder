@@ -3,7 +3,8 @@ import {useState, useEffect} from 'react';
 import axios from 'axios';
 import Card from './Card.js';
 import CardSearch from '../searches/CardSearch.js';
-import NewCard from './NewCard.js'
+import NewCardForm from './NewCard.js'
+import './css/style.css'
 
 
 
@@ -11,7 +12,7 @@ const Cards = () => {
 
     const [cards, setCards] = useState([]);
     const [cardSkip, setCardSkip] = useState(0)
-    const [currentTab, setCurrentTab] = useState("index")
+    const [currentTab, setCurrentTab] = useState("card-index")
 
     useEffect(()=>{
         // axios.get(`https://magic-academy-api.herokuapp.com/cards`)
@@ -22,7 +23,6 @@ const Cards = () => {
         if (cards.length == 0) {
             axios.get(`http://localhost:3000/cards?skip=0`)
                 .then((response) => {
-                    console.log("useEffect");
                     setCardSkip(response.data.length)
                     setCards(response.data);
             })
@@ -33,7 +33,6 @@ const Cards = () => {
         console.log("Loding more cards");
         axios.get(`http://localhost:3000/cards?skip=${cardSkip}`)
             .then((response) => {
-                console.log(response.data);
                 setCards([...cards, ...response.data])
                 setCardSkip(cardSkip + response.data.length);
             })
@@ -43,13 +42,13 @@ const Cards = () => {
         return (
         <>
             <h2>Card List</h2>
-            <ul>
+            <div className="flex-box flex-row flex-wrap ">
                 {cards.map((card) => {
                     return(
-                        <li key={card.id} > <Card card={card}/> </li>
+                        <div key={card.id} > <Card card={card}/> </div>
                     )
                 })}
-            </ul>
+            </div>
             <button onClick={(event) => {loadMoreCards()}}>Load More Cards</button>
         </>
         )
@@ -58,7 +57,7 @@ const Cards = () => {
         return <CardSearch />
     }
     const renderNewCard = () => {
-        return <NewCard />
+        return <NewCardForm />
     }
 
     const handleTabChange = (tab) => {
@@ -70,12 +69,13 @@ const Cards = () => {
         <nav>
             <button onClick={(event) =>{handleTabChange("card-index")}}>Index</button>
             <button onClick={(event) =>{handleTabChange("card-search")}}>Card Search</button>
-            <button onClick={(event) =>{handleTabChange("new-card")}}>New</button>
+            <button onClick={(event) =>{handleTabChange("new-card-form")}}>New</button>
             {/* section for details */}
             {/* section for edit */}
         </nav>
         {currentTab == "card-index" ? renderCardIndex() : null}
-
+        {currentTab == "card-search" ? renderCardSearch() : null}
+        {currentTab == "new-card-form" ? renderNewCard() : null}
     </>
     )
 }
