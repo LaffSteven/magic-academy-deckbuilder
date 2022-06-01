@@ -22,7 +22,7 @@ const CardSearch = () => {
         axios.get(`http://localhost:3000/cards/search?name=${searchTerm}`)
             .then((response) => {
                 // setSearchResults(response.data);
-                console.log(response.data);
+                // console.log(response.data);
                 console.log(`Found ${response.data.length} Results`);
                 setSearchResults(response.data);
                 searchResults.forEach((card, i) => {
