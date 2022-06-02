@@ -25,7 +25,10 @@ const Decks = () => {
           <ul>
               {deckList.map((deck) => {
                   return(
-                      <li key={deck._id}> <Deck deck={deck}/> </li>
+                    <>
+                      <li key={deck._id}> <Deck deck={deck}/>
+                      </li>
+                      </>
                   )
               })}
           </ul>
@@ -58,6 +61,8 @@ const Decks = () => {
   const handleUpdateDeckName = (event) => {
     setDeckName(event.target.value)
   }
+
+
 
 
   return(
