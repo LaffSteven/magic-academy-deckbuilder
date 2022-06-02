@@ -80,7 +80,7 @@ const EditCardForm = (props) => {
     const handleEditCardSubmit = (event) => {
         event.preventDefault();
         console.log(editCard.id);
-        axios.put(`http://localhost:3000/cards/${editCard._id}`,
+        axios.put(`https://magic-academy-api.herokuapp.com/cards/${editCard._id}`,
             // {
             //     name: editName,
             //     mana_cost: manaCost,
