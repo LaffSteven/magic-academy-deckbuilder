@@ -12,6 +12,9 @@ const Deck = (props) => {
     return (
         <div>
           <p>{deck.name}</p>
+          <p>{deck.cardList[0].card_name}</p>
+
+
 
           <DeckInfo deckData={deck}/>
         </div>
