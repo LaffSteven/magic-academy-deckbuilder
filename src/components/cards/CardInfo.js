@@ -23,7 +23,7 @@ const CardInfo = (props) => {
 
     const deleteCard = (_id) => {
         // axios.delete(`https://magic-academy-api.herokuapp.com/cards/${_id}`).then(renderCards())
-        axios.delete(`http://localhost:3000/cards/${_id}`)
+        axios.delete(`https://magic-academy-api.herokuapp.com/cards/${_id}`)
     }
 
     return (

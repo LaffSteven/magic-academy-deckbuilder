@@ -21,7 +21,7 @@ const Cards = () => {
         //         setCards(response.data);
         // })
         if (cards.length == 0) {
-            axios.get(`http://localhost:3000/cards?skip=0`)
+            axios.get(`https://magic-academy-api.herokuapp.com/cards?skip=0`)
                 .then((response) => {
                     setCardSkip(response.data.length)
                     setCards(response.data);
@@ -31,7 +31,7 @@ const Cards = () => {
 
     const loadMoreCards = () => {
         console.log("Loding more cards");
-        axios.get(`http://localhost:3000/cards?skip=${cardSkip}`)
+        axios.get(`https://magic-academy-api.herokuapp.com/cards?skip=${cardSkip}`)
             .then((response) => {
                 setCards([...cards, ...response.data])
                 setCardSkip(cardSkip + response.data.length);

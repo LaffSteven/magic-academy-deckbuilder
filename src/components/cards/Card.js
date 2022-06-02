@@ -10,7 +10,7 @@ const Card = (props) => {
 
     const renderSmallCardImage = () => {
         return(
-            <img src={card.image_uris.small} alt={card.name} onClick={(event) => {toggleShowCardInfo()}}/>
+            <img src={card.image_uris.small} alt={card.name} onClick={(event) => {toggleShowCardInfo()}} width="146" height="204"/>
         )
     }
 

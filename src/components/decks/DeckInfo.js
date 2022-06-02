@@ -9,7 +9,7 @@ const DeckInfo = (props) => {
     const deckDelete = (_id) => {
       console.log(_id);
       console.log(deckData._id);
-      axios.delete(`http://localhost:3000/decks/${_id}`)
+      axios.delete(`https://magic-academy-api.herokuapp.com/decks/${_id}`)
     }
 
     return (
