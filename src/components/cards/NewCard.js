@@ -76,13 +76,8 @@ const NewCardForm = () => {
     }
 
     const handleNewCardSubmit = (event) => {
-        handleNewCardChange()
-        axios.post('https://magic-academy-api.herokuapp.com/cards', newCard)
-            .then(() => {console.log(`posted ${newCard.name}`);})
-    }
-
-    const handleNewCardChange = () => {
-        setNewCard(
+        event.preventDefault();
+        axios.post('https://magic-academy-api.herokuapp.com/cards',
             {
                 name: newName,
                 mana_cost: manaCost,
@@ -106,51 +101,39 @@ const NewCardForm = () => {
 
     const handleNameChange = (event) => {
         setNewName(event.target.value);
-        handleNewCardChange();
     }
     const handleManaCostChange = (event) => {
         setManaCost(event.target.value);
-        handleNewCardChange();
     }
     const handleImageChange = (event) => {
         setImage(event.target.value);
-        handleNewCardChange();
     }
     const handleSetNameChange = (event) => {
         setSetName(event.target.value);
-        handleNewCardChange();
     }
     const handleFlavorTextChange = (event) => {
         setFlavorText(event.target.value);
-        handleNewCardChange();
     }
     const handleOracleTextChange = (event) => {
         setOracleText(event.target.value);
-        handleNewCardChange();
     }
     const handleArtistChange = (event) => {
         setArtist(event.target.value);
-        handleNewCardChange();
     }
     const handleRarityChange = (event) => {
         setRarity(event.target.value);
-        handleNewCardChange();
     }
     const handleTypeLineChange = (event) => {
         setTypeLine(event.target.value);
-        handleNewCardChange();
     }
     const handlePowerChange = (event) => {
-        setArtist(event.target.value);
-        handleNewCardChange();
+        setPower(event.target.value);
     }
     const handleToughnessChange = (event) => {
-        setRarity(event.target.value);
-        handleNewCardChange();
+        setToughness(event.target.value);
     }
     const handleLoyaltyChange = (event) => {
-        setTypeLine(event.target.value);
-        handleNewCardChange();
+        setLoyalty(event.target.value);
     }
 
 
