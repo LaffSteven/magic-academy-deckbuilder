@@ -98,7 +98,7 @@ const EditCardForm = (props) => {
                 type_line: typeLine
             }
         )
-        // axios.put('http://localhost:3000/cards', newCard)
+        // axios.put('https://magic-academy-api.herokuapp.com/cards', newCard)
         //     .then(() => {console.log(`posted ${newCard.name}`);})
     }
 

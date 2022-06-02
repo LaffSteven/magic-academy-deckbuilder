@@ -10,7 +10,7 @@ const Decks = () => {
   const [deckName, setDeckName] = useState()
 
   useEffect(() => {
-    axios.get('http://localhost:3000/decks').then((response) => {
+    axios.get('https://magic-academy-api.herokuapp.com/decks').then((response) => {
       setDeckList(response.data)
     })
   }, [])
@@ -39,7 +39,7 @@ const Decks = () => {
   const addDeck = (event) => {
     event.preventDefault()
     console.log(deckName);
-    axios.post('http://localhost:3000/decks',
+    axios.post('https://magic-academy-api.herokuapp.com/decks',
       {
         name: deckName,
         cardList: [
@@ -51,7 +51,7 @@ const Decks = () => {
         ]
       }
   ).then(() => {
-    axios.get('http://localhost:3000/decks').then((response) => {
+    axios.get('https://magic-academy-api.herokuapp.com/decks').then((response) => {
       setDeckList(response.data)
       console.log(deckName);
     })

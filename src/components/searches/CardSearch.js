@@ -19,7 +19,7 @@ const CardSearch = () => {
         //             console.log(card.name);
         //         })
         // })
-        axios.get(`http://localhost:3000/cards/search?name=${searchTerm}`)
+        axios.get(`https://magic-academy-api.herokuapp.com/cards/search?name=${searchTerm}`)
             .then((response) => {
                 // setSearchResults(response.data);
                 // console.log(response.data);

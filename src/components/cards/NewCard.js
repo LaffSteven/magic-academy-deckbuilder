@@ -77,7 +77,7 @@ const NewCardForm = () => {
 
     const handleNewCardSubmit = (event) => {
         handleNewCardChange()
-        axios.post('http://localhost:3000/cards', newCard)
+        axios.post('https://magic-academy-api.herokuapp.com/cards', newCard)
             .then(() => {console.log(`posted ${newCard.name}`);})
     }
 
