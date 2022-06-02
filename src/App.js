@@ -31,9 +31,8 @@ const App = () => {
         <hr/>
         <br/>
         <section id="deck-section" className="flex-box flex-column flex-nowrap width-100 justify-content-center align-items-center">
-            Deck Stuff Goes Here
+            <Decks />
         </section>
-
     </>
     )
 }
