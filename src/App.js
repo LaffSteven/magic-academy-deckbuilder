@@ -13,7 +13,7 @@ const App = () => {
         //     .then((response) => {
         //         setDbPort(response.data);
         // })
-        axios.get('http://localhost:3000/')
+        axios.get('https://magic-academy-api.herokuapp.com/')
             .then((response) => {
                 setDbPort(response.data);
         })
