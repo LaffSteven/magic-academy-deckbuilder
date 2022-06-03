@@ -8,6 +8,7 @@ const CardSearch = () => {
     const [searchResults, setSearchResults] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [displayFor, setDisplayFor] = useState("");
+    const [showCardInfo, setShowCardInfo] = useState(false);
 
     const searchByName = (name) => {
         axios.get(`https://magic-academy-api.herokuapp.com/cards/search?name=${searchTerm}`)
@@ -36,6 +37,10 @@ const CardSearch = () => {
                 })}
             </ul>
         )
+    }
+
+    const renderCardInfo = () => {
+
     }
 
     return (
