@@ -8,11 +8,24 @@ const Deck = (props) => {
 
 
     const [deck, setDeck] = useState(props.deck);
+    let card = ``
+
+    const cards = () => {
+
+      for(let i = 0; i<deck.cardList.length; i++){
+        card = card + `#${i + 1} ${deck.cardList[i].card_name} ||`
+
+      }
+      return(<p>|| {card}</p>)
+
+    }
+
 
     return (
         <div>
           <p>{deck.name}</p>
-          <p>{deck.cardList[0].card_name}</p>
+          <p>{deck.cardList.length}</p>
+          <p>{cards()}</p>
 
 
 
