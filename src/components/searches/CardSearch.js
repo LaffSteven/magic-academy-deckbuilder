@@ -1,13 +1,15 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
-import Card from '../cards/Card.js'
+import Card from '../cards/Card.js';
+import CardInfo from '../cards/CardInfo.js';
 
 const CardSearch = () => {
 
     const [searchResults, setSearchResults] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [displayFor, setDisplayFor] = useState("");
+    const [showCardInfo, setShowCardInfo] = useState(false);
 
     const searchByName = (name) => {
         axios.get(`https://magic-academy-api.herokuapp.com/cards/search?name=${searchTerm}`)
@@ -32,9 +34,26 @@ const CardSearch = () => {
         return (
             <ul>
                 {searchResults.map((card) => {
-                    return <li>{card.name}</li>
+                    return (
+                    <>
+                        <li onClick={() => {toggleCardInfo()}}>
+                            <img src={card.image_uris.small} alt={card.name}/>
+                        </li>
+                    </>
+                    )
                 })}
             </ul>
+        )
+    }
+
+    const toggleCardInfo = () => {
+        setShowCardInfo(!showCardInfo);
+        console.log(showCardInfo);
+    }
+
+    const renderCardInfo = (card) => {
+        return (
+            <CardInfo cardData={card} toggleCardInfo={toggleCardInfo()}/>
         )
     }
 
@@ -45,7 +64,6 @@ const CardSearch = () => {
             <input type="submit" value="Search"/>
         </form>
         <br/>
-        <p>{searchResults.length} results for "{searchTerm}"</p>
         <hr/>
 
         {renderSearchResults()}
