@@ -86,7 +86,7 @@ const CardInfo = (props) => {
         return (
             <>
                 {props.origin == "deck" ?
-                    <button onClick={props.getNewCard(cardData)}> Add {cardData.name} To Deck</button>
+                    <button onClick={() => {props.getNewCard(cardData); console.log(cardData)}}> Add {cardData.name} To Deck</button>
                     :
                     null
                 }

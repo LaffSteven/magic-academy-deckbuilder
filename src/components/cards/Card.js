@@ -23,8 +23,8 @@ const Card = (props) => {
     // }
 
     const renderCardInfo = (card) => {
-        console.log(props.origin);
-        console.log(card);
+        // console.log(props.origin);
+        // console.log(card);
         return (
             <div className="modal flex-box flex-row">
             { props.origin == "deck" ?

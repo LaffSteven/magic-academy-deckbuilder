@@ -6,7 +6,7 @@ import CardSearch from '../searches/CardSearch.js';
 
 const EditDeck = (props) => {
 
-  const [cardList, setCardList] = useState([])
+  const [cardList, setCardList] = useState(props.deckData.cardList)
   const [deckData, setDeckData] = useState(props.deckData)
   const [cards, setCards] = useState([])
   const [cardSkip, setCardSkip] = useState(0)
@@ -16,6 +16,7 @@ const EditDeck = (props) => {
   const [showCardInfo, setShowCardInfo] = useState(false);
   const [arr2, setArr2] = useState([])
   const [newCard, setNewCard] = useState({});
+  const [updatedDeckName, setUpdatedDeckName] = useState(props.deckData)
 
   let cardStr = ``
 
@@ -32,27 +33,61 @@ const EditDeck = (props) => {
                   setCards(response.data);
           })
       }
-  }, [])
+  }, []);
 
+  const renderCardList = () => {
+      setCardList([...cardList, {card_id:newCard._id, card_name:newCard.name}])
+  }
 
   const saveDeckChanges = (deckID) => {
-      axios.put(`https://magic-academy-api.herokuapp.com/decks/${deckID}`)
+      axios.put(`https://magic-academy-api.herokuapp.com/decks/${deckID}`,
+          {
+
+          }
+      )
       // setCardList([...cardList, {card}])
   }
 
-// addToDeck={(card) => {setCardList([...cardList, {card_id:card._id, card_name:card.name}])}}
+
   const renderCardSearch = () => {
-      return (
+    return (
         <CardSearch origin={"deck"} cardList={cardList} getNewCard={(card) => {setNewCard(card)}}/>
-      )
+    )
+  }
+
+  const deckNameUpdate = (deckData) => {
+    axios.put(`http://localhost:3000/decks/${deckData._id}`,
+    {
+      name: updatedDeckName
+    })
+  }
+  const handleUpdateDeckName = (event) => {
+    setUpdatedDeckName(event.target.value)
+  }
+
+  const renderEditDeckPage = () => {
+      return {
+
+      }
   }
 
   return(
       <>
-        <section id="card-list"></section>
+          <section id="card-list">
+              <ul>
+              {cardList.map((card) => {
+                  <li>{card.card_name}</li>
+              })}
+              </ul>
+          </section>
         <section id="card-search">
             {renderCardSearch()}
         </section>
+        <form onSubmit={(event) => {deckNameUpdate(deckData)}}>
+        Update Deck Name: <input type="text" onChange={handleUpdateDeckName}/>
+        <input type="submit" value="change Name"/>
+        </form><br/>
+        {props.currentTab == "edit-deck" ? <button onClick={props.deckDelete}> DELETE DECK </button> : null}
 
       </>
   )

@@ -45,7 +45,7 @@ const Cards = () => {
                 <h2>Card Index</h2>
                 <div id="card-index-list" className="flex-box flex-row flex-wrap justify-spacearound overflow-y-scroll">
                     {cards.map((card) => {
-                        console.log(card.name);
+                        // console.log(card.name);
                         return(
                             <div key={card.id} > <Card card={card} origin={"cards"}/> </div>
                         )

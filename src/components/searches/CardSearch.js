@@ -33,7 +33,6 @@ const CardSearch = (props) => {
     const renderSearchResults = () => {
         return (
             <>
-                <h2>Card Index</h2>
                 <div className="flex-box flex-row flex-wrap justify-spacearound">
                     {searchResults.map((card) => {
                         console.log(card.name);
