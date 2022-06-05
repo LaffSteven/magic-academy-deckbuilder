@@ -11,10 +11,67 @@ const CardInfo = (props) => {
     const renderCardData = () => {
         return (
                 <div id="card-info-body" className="flex-box flex-row flex-nowrap justify-spacearound">
-                    <img src={cardData.image_uris.normal} alt={cardData.name} />
-                    <div>
-                        <p>Mana Cost: {cardData.mana_cost}</p>
-                        <p>Set Name: {cardData.set_name}</p>
+                    <img src={cardData.image_uris.normal} alt={cardData.name} id="card-data-image"/>
+                    <div className="flex-box flex-column justify-spacearound align-items-center">
+                        <table id="card-data-table">
+                            <thead>
+                                <tr>
+                                    <th colspan="2"> <h3>{cardData.name}</h3> </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td> Mana Cost </td>
+                                    <td> {cardData.mana_cost} </td>
+                                </tr>
+                                <tr>
+                                    <td> Type Line </td>
+                                    <td> {cardData.type_line} </td>
+                                </tr>
+                                <tr>
+                                    <td> Rarity </td>
+                                    <td> {cardData.rarity} </td>
+                                </tr>
+                                <tr>
+                                    <td> Oracle Text </td>
+                                    <td> {cardData.oracle_text} </td>
+                                </tr>
+                                <tr>
+                                    <td> Flavor Text </td>
+                                    <td> {cardData.flavor_text} </td>
+                                </tr>
+                                {
+                                    (cardData.power || cardData.toughness) ?
+                                    <>
+                                        <tr>
+                                        <td colspan="2"> Power: {cardData.power} </td>
+                                        </tr>
+                                        <tr>
+                                        <td colspan="2"> Toughness: {cardData.toughness}</td>
+                                        </tr>
+                                    </>
+                                    :
+                                    null
+                                }
+                                {
+                                    cardData.loyaty ?
+                                        <tr>
+                                        <td> Loyalty </td>
+                                        <td>{cardData.loyaty}</td>
+                                        </tr>
+                                    :
+                                        null
+                                }
+                                <tr>
+                                    <td> Artist </td>
+                                    <td> {cardData.artist} </td>
+                                </tr>
+                                <tr>
+                                    <td> Set </td>
+                                    <td> {cardData.set_name} </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
         )
@@ -35,12 +92,14 @@ const CardInfo = (props) => {
                 <div id="card-info-header">
                     <h3>{cardData.name}</h3>
                 </div>
+                <hr/>
                 {hideEditForm ? renderCardData() : renderCardEditForm()}
-                <div id="card-info-footer">
+                <hr/>
+                <div id="card-info-footer" className="flex-box flex-row justify-spacearound">
                     { hideEditForm ?
                         <>
                         <button onClick={() => {setHideEditForm(!hideEditForm)}}>Edit {cardData.name}</button>
-                        <button onClick={props.hideCardInfo}> Hide </button>
+                        <button onClick={props.hideCardInfo}> Close </button>
                         </>
                         :
                         <>
