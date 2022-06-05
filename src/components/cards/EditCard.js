@@ -20,7 +20,7 @@ const EditCardForm = (props) => {
 
     const renderForm = () => {
         return (
-            <div id="card-edit-body">
+            <div id="card-edit-body" className="flex-box flex-row justify-spacearound">
                 <form onSubmit={handleEditCardSubmit} className="flex-box flex-column justify-center align-content-center">
                     <h2>Enter New Card Data</h2>
                     <table>

@@ -32,17 +32,16 @@ const CardSearch = () => {
 
     const renderSearchResults = () => {
         return (
-            <ul>
-                {searchResults.map((card) => {
-                    return (
-                    <>
-                        <li onClick={() => {toggleCardInfo()}}>
-                            <img src={card.image_uris.small} alt={card.name}/>
-                        </li>
-                    </>
-                    )
-                })}
-            </ul>
+            <>
+                <h2>Card Index</h2>
+                <div className="flex-box flex-row flex-wrap justify-spacearound">
+                    {searchResults.map((card) => {
+                        return(
+                            <div key={card.id} > <Card card={card}/> </div>
+                        )
+                    })}
+                </div>
+            </>
         )
     }
 
