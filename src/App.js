@@ -21,9 +21,6 @@ const App = () => {
 
     return(
     <>
-        <p>App Loaded on port {dbPort}</p>
-        <br/>
-        <hr/>
         <section id="card-section" className="flex-box flex-column flex-nowrap width-100 justify-content-center align-items-center">
             <Cards />
         </section>
