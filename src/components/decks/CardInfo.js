@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
+import Cards from './Cards.js'
+
 
 const CardInfo = (props) => {
 
@@ -9,6 +11,9 @@ const CardInfo = (props) => {
     const [cardList, setCardList] = useState([])
     const [cardState, setCardState] = useState("")
     let card = ``
+    const [arr, setArr] = useState([])
+    const [runOnce, setRunOnce] = useState(true)
+    const [cardListObj, setCardListObj] = useState({cardList: cardList})
 
     const renderCardData = () => {
         return (
@@ -17,49 +22,60 @@ const CardInfo = (props) => {
                     <p>Set Name: {cardData.set_name}</p>
                     <button onClick={(event) => {handleCardList()}}> Add Card {cardData.name}</button>
                     <p>Cards Added: {cardState}</p>
-                    <button onClick={(event) => {addDeckCard(deckData)}}>Submit Cards to Deck</button>
+                    <button onClick={(event) => {addDeckCard(cardList)}}>Submit Cards to Deck</button>
                 </div>
         )
     }
 
     const listCards = () => {
-      let cardAdd = []
       for(let i = 0; i<cardList.length; i++){
-          card = (card + `${cardList[i].card_name}`)
+          card = (card + `${cardList[i].card_name} `)
 
       }
       setCardState(card)
       console.log(card)
+
     }
 
     const handleCardList = () => {
-      console.log(cardData.name)
-      let arr = cardList
+      console.log(cardListObj.cardList)
+      setArr(cardList)
       arr[arr.length] = {
         card_id: `${cardData._id}`,
         card_name: `${cardData.name}`,
-
       }
-      console.log(cardList[0].card_name);
       setCardList(arr)
+      console.log(cardList);
+      setCardListObj({cardList: cardList})
+      console.log(cardListObj);
+
+
+
       listCards()
 
     }
 
 
-    const addDeckCard = (deckData) => {
-      console.log(deckData._id);
-        // axios.delete(`https://magic-academy-api.herokuapp.com/cards/${_id}`).then(renderCards())
-        axios.put(`http://localhost:3000/decks/${deckData._id}`, {
-            cardList: cardList
-            // [
-            //     {
-            //         card_id: `${cardData._id}`,
-            //         card_name: `${cardData.name}`,
-            //         quantity: 5
-            //     }
-            // ]
-        })
+    const addDeckCard = (cardList) => {
+      console.log(cardList);
+
+      return(
+        <p>
+
+        </p>
+      )
+      // console.log(deckData._id);
+      //   // axios.delete(`https://magic-academy-api.herokuapp.com/cards/${_id}`).then(renderCards())
+      //   axios.put(`http://localhost:3000/decks/${deckData._id}`, {
+      //       cardList: cardList
+      //       // [
+      //       //     {
+      //       //         card_id: `${cardData._id}`,
+      //       //         card_name: `${cardData.name}`,
+      //       //         quantity: 5
+      //       //     }
+      //       // ]
+      //   })
     }
 
     return (
@@ -69,11 +85,11 @@ const CardInfo = (props) => {
                     <h3>{cardData.name}</h3>
                 </div>
                 {renderCardData()}
+                <Cards cardListObj={cardListObj} />
             </div>
         </div>
     )
 }
-
 
 
 export default CardInfo

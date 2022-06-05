@@ -1,83 +1,56 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
-import Card from './Card.js';
-import CardSearch from '../searches/CardSearch.js';
 import './css/style.css'
-import Deck from './Deck.js'
+import CardInfo from './CardInfo.js'
 
 
 
-const Cards = () => {
+const Cards = (props) => {
 
-    const [cards, setCards] = useState([]);
-    const [cardSkip, setCardSkip] = useState(0)
-    const [currentTab, setCurrentTab] = useState("card-index")
 
-    useEffect(()=>{
-        // axios.get(`https://magic-academy-api.herokuapp.com/cards`)
-        //     .then((response) => {
-        //         // console.log(response.data);
-        //         setCards(response.data);
-        // })
-        if (cards.length == 0) {
-            axios.get(`http://localhost:3000/cards?skip=0`)
-                .then((response) => {
-                    setCardSkip(response.data.length)
-                    setCards(response.data);
-            })
+    const [cardListObj, setCardListObj] = useState(props.cardListObj);
+    const [arr, setArr] = useState([])
+    const [cardState, setCardState] = useState("")
+    let card = ``
+
+    const array = []
+
+    const handleArr = () => {
+      let arrayLength = array.length + cardListObj.length
+      for(let i = 0; i < arrayLength; i++){
+        if(array[i] === cardListObj[i]){}
+        else if (array[i] !== cardListObj[i]) {
+          array[i] = cardListObj[i]
+
         }
-    }, [])
+      }
+      setArr(array)
+      console.log(arr);
 
-    const loadMoreCards = () => {
-        console.log("Loding more cards");
-        axios.get(`http://localhost:3000/cards?skip=${cardSkip}`)
-            .then((response) => {
-                setCards([...cards, ...response.data])
-                setCardSkip(cardSkip + response.data.length);
-            })
     }
 
-    const renderCardIndex = () => {
-        return (
-        <>
-            <div className="flex-box flex-column flex-nowrap justify-content-spacearound align-items-center">
-                <h2>Card Index</h2>
-                <div className="flex-box flex-row flex-wrap justify-spacearound">
-                    {cards.map((card) => {
-                        return(
-                            <div key={card.id} > <Card card={card}/> </div>
-                        )
-                    })}
-                </div>
-                <button id="load-more-cards-button" onClick={(event) => {loadMoreCards()}}>Load More Cards</button>
-            </div>
-        </>
-        )
-    }
-    const renderCardSearch = () => {
-        return <CardSearch />
-    }
-    const renderNewCard = () => {
-        return <NewCardForm />
+    const log = () => {
+      console.log(cardListObj.cardList)
     }
 
-    const handleTabChange = (tab) => {
-        setCurrentTab(tab);
+    const listCards = (cardListObj) => {
+      console.log(cardListObj.cardList[0])
+      for(let i = 0; i<cardListObj.cardList.length; i++){
+          card = (card + `${cardListObj.cardList[i].card_name} `)
+
+      }
+      setCardState(card)
+      console.log(cardListObj)
+
     }
 
     return (
     <>
-        <nav>
-            <button onClick={(event) =>{handleTabChange("card-index")}}>Index</button>
-            <button onClick={(event) =>{handleTabChange("card-search")}}>Card Search</button>
-            <button onClick={(event) =>{handleTabChange("new-card-form")}}>Create New Card</button>
-            {/* section for details */}
-            {/* section for edit */}
-        </nav>
-        {currentTab == "card-index" ? renderCardIndex() : null}
-        {currentTab == "card-search" ? renderCardSearch() : null}
-        {currentTab == "new-card-form" ? renderNewCard() : null}
+
+    <button onClick={(event) => {log()}}>card list</button>
+    <p>{cardState}</p>
+
     </>
     )
 }
