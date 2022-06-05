@@ -7,29 +7,18 @@ const DeckInfo = (props) => {
 
     const [deckData, setDeckData] = useState(props.deckData)
     const [deckName, setDeckName] = useState(props.deckData)
-    const [updatedDeckName, setUpdatedDeckName] = useState(props.deckData)
 
 
-    const handleUpdateDeckName = (event) => {
-      setUpdatedDeckName(event.target.value)
-    }
 
 
-    const deckNameUpdate = (deckData) => {
-      axios.put(`http://localhost:3000/decks/${deckData._id}`,
-      {
-        name: updatedDeckName
-      })
-    }
+
+
 
 
     return (
         <div>
             <button onClick={props.deckDelete}> Delete Deck </button>
-            <form onSubmit={(event) => {deckNameUpdate(deckData)}}>
-            Update Deck Name: <input type="text" onChange={handleUpdateDeckName}/>
-            <input type="submit" value="change Name"/>
-            </form><br/>
+
             <EditDeck deckData={deckData}/>
         </div>
     )

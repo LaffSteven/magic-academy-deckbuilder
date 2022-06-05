@@ -4,26 +4,19 @@ import axios from 'axios';
 import Deck from './Deck.js'
 
 
+
 const Decks = () => {
 
   const [deckList, setDeckList] = useState([])
   const [deckName, setDeckName] = useState()
+  const [currentTab, setCurrentTab] = useState("deck-index")
+  const [currentDeck, setCurrentDeck] = useState({})
 
   useEffect(() => {
     axios.get('https://magic-academy-api.herokuapp.com/decks').then((response) => {
       setDeckList(response.data)
     })
   }, [])
-
-  const deckDelete = (_id) => {
-    axios.delete(`https://magic-academy-api.herokuapp.com/decks/${_id}`).then(() => {
-      console.log(`deleting ${_id}`);
-      axios.get(`https://magic-academy-api.herokuapp.com/decks`).then((response) => {
-        setDeckList(response.data)
-        renderDecks()
-      })
-    })
-  }
 
   const renderDecks = () => {
 
@@ -34,13 +27,31 @@ const Decks = () => {
               {deckList.map((deck) => {
                   return(
                     <>
-                      <li key={deck._id}> <Deck deck={deck} deckDelete={() => {deckDelete(deck._id)}} />
+                      <li key={deck._id}> <Deck deck={deck}/>
+                      <button onClick={() => {setCurrentTab("edit-deck"); setCurrentDeck(deck); console.log(currentTab);}}>Edit Deck</button>
                       </li>
                       </>
                   )
               })}
           </ul>
           </>
+      )
+  }
+
+  const deckDelete = () => {
+    axios.delete(`https://magic-academy-api.herokuapp.com/decks/${currentDeck._id}`).then(() => {
+      console.log(`deleting ${currentDeck._id}`);
+    }).then(() => {
+      axios.get('https://magic-academy-api.herokuapp.com/decks').then((response) => {
+        setDeckList(response.data)
+      })
+    })
+    setCurrentTab("deck-index")
+  }
+
+  const renderDeck = (deck) => {
+      return(
+          <Deck deck={currentDeck} deckDelete={() => deckDelete(currentDeck._id)} currentTab={currentTab}/>
       )
   }
 
@@ -70,16 +81,21 @@ const Decks = () => {
     setDeckName(event.target.value)
   }
 
-
+  const handleTabChange = (tab) => {
+      setCurrentTab(tab);
+  }
 
 
   return(
     <>
-      <form onSubmit={addDeck}>
-      Name: <input type="text" onChange={handleUpdateDeckName}/>
-      <input type="submit" value="Add Deck"/>
-      </form>
-      {renderDecks()}
+
+
+      <nav>
+          <button onClick={(event) =>{handleTabChange("deck-index")}}>Deck List</button>
+      </nav>
+      {currentTab == "deck-index" ? renderDecks() : null}
+      {currentTab == "edit-deck" ? renderDeck(currentDeck) : null}
+
     </>
   )
 
@@ -88,3 +104,11 @@ const Decks = () => {
 }
 
 export default Decks
+
+
+
+// <form onSubmit={addDeck}>
+// Name: <input type="text" onChange={handleUpdateDeckName}/>
+// <input type="submit" value="Add Deck"/>
+// </form>
+// {renderDecks()}
