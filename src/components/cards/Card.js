@@ -17,9 +17,7 @@ const Card = (props) => {
     const renderCardInfo = () => {
         return (
             <div className="modal flex-box flex-row">
-                <img src={card.image_uris.normal} alt={card.name} />
-                <CardInfo cardData={card}/>
-                <button onClick={(event) => {toggleShowCardInfo()}}> Hide </button>
+                <CardInfo cardData={card} hideCardInfo={() => {setShowCardInfo(false)}}/>
             </div>
         )
     }
