@@ -10,9 +10,12 @@ const CardInfo = (props) => {
 
     const renderCardData = () => {
         return (
-                <div id="card-info-body">
-                    <p>Mana Cost: {cardData.mana_cost}</p>
-                    <p>Set Name: {cardData.set_name}</p>
+                <div id="card-info-body" className="flex-box flex-row flex-nowrap justify-spacearound">
+                    <img src={cardData.image_uris.normal} alt={cardData.name} />
+                    <div>
+                        <p>Mana Cost: {cardData.mana_cost}</p>
+                        <p>Set Name: {cardData.set_name}</p>
+                    </div>
                 </div>
         )
     }
@@ -37,6 +40,7 @@ const CardInfo = (props) => {
                     { hideEditForm ?
                         <>
                         <button onClick={() => {setHideEditForm(!hideEditForm)}}>Edit {cardData.name}</button>
+                        <button onClick={props.hideCardInfo}> Hide </button>
                         </>
                         :
                         <>

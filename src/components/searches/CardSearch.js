@@ -1,49 +1,60 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
-import Card from '../cards/Card.js'
+import Card from '../cards/Card.js';
+import CardInfo from '../cards/CardInfo.js';
 
 const CardSearch = () => {
 
     const [searchResults, setSearchResults] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
+    const [displayFor, setDisplayFor] = useState("");
+    const [showCardInfo, setShowCardInfo] = useState(false);
 
     const searchByName = (name) => {
-        // axios.get(`https://magic-academy-api.herokuapp.com/cards/search?name=${searchTerm}`)
-        //     .then((response) => {
-        //         // setSearchResults(response.data);
-        //         console.log(response.data);
-        //         console.log(`Found ${response.data.length} Results`);
-        //         setSearchResults(response.data);
-        //         searchResults.forEach((card, i) => {
-        //             console.log(card.name);
-        //         })
-        // })
         axios.get(`https://magic-academy-api.herokuapp.com/cards/search?name=${searchTerm}`)
             .then((response) => {
-                // setSearchResults(response.data);
-                // console.log(response.data);
-                console.log(`Found ${response.data.length} Results`);
                 setSearchResults(response.data);
-                searchResults.forEach((card, i) => {
-                    console.log(card.name);
-                })
+                console.log(searchResults);
         })
     }
 
     const handleSearchSubmit = (event) => {
         event.preventDefault();
         if (searchTerm) {
-            console.log(`Searching for ${searchTerm}`);
             searchByName(searchTerm);
-        } else {
-            console.log(`No Results found for ${searchTerm}`);
         }
-
     }
 
     const handleSearchTermChange = (event) => {
         setSearchTerm(event.target.value);
+    }
+
+    const renderSearchResults = () => {
+        return (
+            <ul>
+                {searchResults.map((card) => {
+                    return (
+                    <>
+                        <li onClick={() => {toggleCardInfo()}}>
+                            <img src={card.image_uris.small} alt={card.name}/>
+                        </li>
+                    </>
+                    )
+                })}
+            </ul>
+        )
+    }
+
+    const toggleCardInfo = () => {
+        setShowCardInfo(!showCardInfo);
+        console.log(showCardInfo);
+    }
+
+    const renderCardInfo = (card) => {
+        return (
+            <CardInfo cardData={card} toggleCardInfo={toggleCardInfo()}/>
+        )
     }
 
     return (
@@ -53,12 +64,9 @@ const CardSearch = () => {
             <input type="submit" value="Search"/>
         </form>
         <br/>
-        <p>{searchResults.length} results for {searchTerm}</p>
         <hr/>
 
-        <ul>
-            {searchResults.map((card) => {<li key={card.id}> {card.name} </li>})}
-        </ul>
+        {renderSearchResults()}
     </>
     )
 
