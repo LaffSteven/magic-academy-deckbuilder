@@ -47,7 +47,7 @@ const Deck = (props) => {
 
 
 
-          <DeckInfo deckData={deck}/>
+          <DeckInfo deckData={deck} deckDelete={props.deckDelete}/>
         </div>
     )
 }

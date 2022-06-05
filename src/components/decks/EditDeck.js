@@ -42,7 +42,6 @@ const EditDeck = (props) => {
           card_id: `${card._id}`,
           card_name: `${card.name}`,
         }
-        setTimeout(100)
         setCardList(arr2)
         console.log(cardList);
 

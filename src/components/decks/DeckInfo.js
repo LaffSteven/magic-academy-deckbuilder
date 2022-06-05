@@ -14,9 +14,6 @@ const DeckInfo = (props) => {
       setUpdatedDeckName(event.target.value)
     }
 
-    const deckDelete = (_id) => {
-      axios.delete(`https://magic-academy-api.herokuapp.com/decks/${_id}`)
-    }
 
     const deckNameUpdate = (deckData) => {
       axios.put(`http://localhost:3000/decks/${deckData._id}`,
@@ -28,7 +25,7 @@ const DeckInfo = (props) => {
 
     return (
         <div>
-            <button onClick={(event) => {deckDelete(deckData._id)}}> Delete Deck </button>
+            <button onClick={props.deckDelete}> Delete Deck </button>
             <form onSubmit={(event) => {deckNameUpdate(deckData)}}>
             Update Deck Name: <input type="text" onChange={handleUpdateDeckName}/>
             <input type="submit" value="change Name"/>

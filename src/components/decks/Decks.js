@@ -15,9 +15,17 @@ const Decks = () => {
     })
   }, [])
 
+  const deckDelete = (_id) => {
+    axios.delete(`https://magic-academy-api.herokuapp.com/decks/${_id}`).then(() => {
+      console.log(`deleting ${_id}`);
+      axios.get(`https://magic-academy-api.herokuapp.com/decks`).then((response) => {
+        setDeckList(response.data)
+        renderDecks()
+      })
+    })
+  }
 
   const renderDecks = () => {
-    console.log(deckList);
 
       return (
           <>
@@ -26,7 +34,7 @@ const Decks = () => {
               {deckList.map((deck) => {
                   return(
                     <>
-                      <li key={deck._id}> <Deck deck={deck}/>
+                      <li key={deck._id}> <Deck deck={deck} deckDelete={() => {deckDelete(deck._id)}} />
                       </li>
                       </>
                   )
