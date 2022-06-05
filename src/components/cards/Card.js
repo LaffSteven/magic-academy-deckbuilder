@@ -14,11 +14,31 @@ const Card = (props) => {
         )
     }
 
-    const renderCardInfo = () => {
+    // const renderCardInfo = () => {
+    //     return (
+    //         <div className="modal flex-box flex-row">
+    //             <CardInfo cardData={card} origin={props.origin} hideCardInfo={() => {setShowCardInfo(false)}}/>
+    //         </div>
+    //     )
+    // }
+
+    const renderCardInfo = (card) => {
+        console.log(props.origin);
+        console.log(card);
         return (
             <div className="modal flex-box flex-row">
-                <CardInfo cardData={card} hideCardInfo={() => {setShowCardInfo(false)}}/>
+            { props.origin == "deck" ?
+                <CardInfo cardData={card} toggleCardInfo={props.toggleCardInfo} origin={props.origin} getNewCard={props.getNewCard} hideCardInfo={() => {setShowCardInfo(false)}}/>
+                :
+                null
+            }
+            { props.origin == "cards" ?
+                <CardInfo cardData={card} toggleCardInfo={props.toggleCardInfo} origin={props.origin} hideCardInfo={() => {setShowCardInfo(false)}}/>
+                :
+                null
+            }
             </div>
+
         )
     }
 
@@ -27,9 +47,13 @@ const Card = (props) => {
         setShowCardInfo(!showCardInfo);
     }
 
+    // const addCardToDeck = (deckID) => {
+    //     setCardList([...cardList, {card_id:card._id, card_name:card.name}])
+    // }
+
     return (
         <>
-        {!showCardInfo ? renderSmallCardImage() : renderCardInfo()}
+        {!showCardInfo ? renderSmallCardImage() : renderCardInfo(card)}
         </>
 
     )

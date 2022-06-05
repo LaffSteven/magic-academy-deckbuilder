@@ -81,6 +81,27 @@ const CardInfo = (props) => {
         return <EditCardForm cardData={cardData} />
     }
 
+    const renderEditOrAddButton = () => {
+        console.log(props.origin);
+        return (
+            <>
+                {props.origin == "deck" ?
+                    <button onClick={props.getNewCard(cardData)}> Add {cardData.name} To Deck</button>
+                    :
+                    null
+                }
+
+                {props.origin == "cards" ?
+                    <button onClick={() => {setHideEditForm(!hideEditForm)}}>Edit {cardData.name}</button>
+                    :
+                    null
+                }
+            </>
+
+
+        )
+    }
+
     const deleteCard = (_id) => {
         // axios.delete(`https://magic-academy-api.herokuapp.com/cards/${_id}`).then(renderCards())
         axios.delete(`https://magic-academy-api.herokuapp.com/cards/${_id}`)
@@ -98,7 +119,7 @@ const CardInfo = (props) => {
                 <div id="card-info-footer" className="flex-box flex-row justify-spacearound">
                     { hideEditForm ?
                         <>
-                        <button onClick={() => {setHideEditForm(!hideEditForm)}}>Edit {cardData.name}</button>
+                        {renderEditOrAddButton()}
                         <button onClick={props.hideCardInfo}> Close </button>
                         </>
                         :

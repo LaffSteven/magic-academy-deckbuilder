@@ -4,7 +4,7 @@ import axios from 'axios';
 import Card from '../cards/Card.js';
 import CardInfo from '../cards/CardInfo.js';
 
-const CardSearch = () => {
+const CardSearch = (props) => {
 
     const [searchResults, setSearchResults] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
@@ -36,8 +36,21 @@ const CardSearch = () => {
                 <h2>Card Index</h2>
                 <div className="flex-box flex-row flex-wrap justify-spacearound">
                     {searchResults.map((card) => {
+                        console.log(card.name);
                         return(
-                            <div key={card.id} > <Card card={card}/> </div>
+                            <>
+                            {props.origin == "deck" ?
+                                <div key={card.id} > <Card card={card} origin={props.origin} getNewCard={props.getNewCard} toggleCardInfo={() => {toggleCardInfo()}} cardList={props.CardList}/> </div>
+                            :
+                                null
+                            }
+                            {props.origin == "cards" ?
+                                <div key={card.id} > <Card card={card} origin={props.origin} toggleCardInfo={() => {toggleCardInfo()}}/> </div>
+                            :
+                                null
+                            }
+                            </>
+
                         )
                     })}
                 </div>
@@ -48,12 +61,7 @@ const CardSearch = () => {
     const toggleCardInfo = () => {
         setShowCardInfo(!showCardInfo);
         console.log(showCardInfo);
-    }
-
-    const renderCardInfo = (card) => {
-        return (
-            <CardInfo cardData={card} toggleCardInfo={toggleCardInfo()}/>
-        )
+        console.log(props.origin);
     }
 
     return (
