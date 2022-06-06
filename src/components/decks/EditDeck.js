@@ -96,6 +96,7 @@ const EditDeck = (props) => {
 
 export default EditDeck
 
+// Erik Old Code //
 
 // <nav>
 //   <button onClick={(event) => {handleToggleSearch()}}>search</button>
