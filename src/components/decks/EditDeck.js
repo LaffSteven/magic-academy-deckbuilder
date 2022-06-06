@@ -52,12 +52,12 @@ const EditDeck = (props) => {
 
   const handleRemoveCard = (card) => {
       const arr = cardList;
-      console.log(arr);
-      console.log(arr.indexOf(card));
+      // console.log(arr);
+      // console.log(arr.indexOf(card));
       arr.splice(arr.indexOf(card), 1)
       // console.log(arr);
       setCardList([...arr]);
-      console.log(cardList);
+      // console.log(cardList);
   }
 
 // onClick={() => {setCardList(cardList.splice((cardList.indexOf(card), 1)))}}
