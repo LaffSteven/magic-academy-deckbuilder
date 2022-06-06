@@ -29,19 +29,19 @@ const Decks = () => {
   const renderDecks = () => {
 
       return (
-          <>
-          <h2>Deck List</h2>
-          <ul>
-              {deckList.map((deck) => {
-                  return(
-                    <>
-                      <li key={deck._id}> <Deck deck={deck} currentTab={currentTab} setEditTab={() => {setCurrentTab("edit-deck"); setCurrentDeck(deck)}}/>
-                      </li>
-                      </>
-                  )
-              })}
-          </ul>
-          </>
+          <div id="deck-list">
+              <h2>Deck List</h2>
+              <ul>
+                  {deckList.map((deck) => {
+                      return(
+                        <>
+                          <li key={deck._id}> <Deck deck={deck} currentTab={currentTab} setEditTab={() => {setCurrentTab("edit-deck"); setCurrentDeck(deck)}}/>
+                          </li>
+                        </>
+                      )
+                  })}
+              </ul>
+          </div>
       )
   }
 
@@ -103,7 +103,7 @@ const Decks = () => {
           <section id="add-deck-form">
               <form onSubmit={addDeck}>
                   Name: <input type="text" onChange={handleUpdateDeckName}/>
-                  <input type="submit" value="Add Deck"/>
+                  <input className="clickable" type="submit" value="Add Deck"/>
               </form>
           </section>
           :

@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
 import CardSearch from '../searches/CardSearch.js';
+import Card from "../cards/Card.js"
 
 
 const EditDeck = (props) => {
@@ -52,38 +53,52 @@ const EditDeck = (props) => {
 
   const handleRemoveCard = (card) => {
       const arr = cardList;
-      console.log(arr);
-      console.log(arr.indexOf(card));
+      // console.log(arr);
+      // console.log(arr.indexOf(card));
       arr.splice(arr.indexOf(card), 1)
       // console.log(arr);
       setCardList([...arr]);
-      console.log(cardList);
+      // console.log(cardList);
+  }
+
+  const handleQuantityChange = (cardID) => {
+      console.log(cardList.indexOf(cardID));
   }
 
 // onClick={() => {setCardList(cardList.splice((cardList.indexOf(card), 1)))}}
+// return (
+//     <li key={card._id}>
+//         {card.card_name} &nbsp; &nbsp;
+//         <button onClick={(event) => {handleRemoveCard(card)}}>remove</button>
+//     </li>
+// )
 
   return(
-      <div className="flex-box flex-row flex-nowrap justify-spacearound align-items-center">
-          <section id="deck-card-list" className="flex-box flex-column justify-spacearound align-items-center">
+      <div className="flex-box flex-row flex-nowrap justify-spacearound">
+          <section id="deck-card-list" className="flex-box flex-column justify-spacearound align-items-center glassify">
             <div>
                 <form onSubmit={(event) => {deckNameUpdate(deckData)}}>
                 Update Deck Name: <input type="text" value={updatedDeckName} onChange={handleUpdateDeckName}/>
-                <input type="submit" value="change Name"/>
+                <input className="clickable" type="submit" value="change Name"/>
                 </form><br/>
             </div>
-            <ul>
+            <table>
+                <tr>
+                    <th>Card Name</th>
+                    <th>Remove?</th>
+                </tr>
                 {cardList.map((card) => {
                     return (
-                        <li key={card._id}>
-                            {card.card_name} &nbsp; &nbsp;
-                            <button onClick={(event) => {handleRemoveCard(card)}}>remove</button>
-                        </li>
+                        <tr key={card._id}>
+                        <td> <Card card={card} origin="deck-list"/> </td>
+                        <td> <button onClick={(event) => {handleRemoveCard(card)}}> remove </button> </td>
+                        </tr>
                     )
                 })}
-            </ul>
+            </table>
             <button onClick={(event) => {saveDeckChanges()}}> Save Changes </button>
           </section>
-        <section id="deck-card-search">
+        <section id="deck-card-search" className="glassify flex-box flex-column align-items-center">
             {renderCardSearch()}
         </section>
 
@@ -96,6 +111,7 @@ const EditDeck = (props) => {
 
 export default EditDeck
 
+// Erik Old Code //
 
 // <nav>
 //   <button onClick={(event) => {handleToggleSearch()}}>search</button>

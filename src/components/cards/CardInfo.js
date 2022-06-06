@@ -16,7 +16,7 @@ const CardInfo = (props) => {
                         <table id="card-data-table">
                             <thead>
                                 <tr>
-                                    <th colspan="2"> <h3>{cardData.name}</h3> </th>
+                                    <th colSpan="2"> <h3>{cardData.name}</h3> </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -44,10 +44,10 @@ const CardInfo = (props) => {
                                     (cardData.power || cardData.toughness) ?
                                     <>
                                         <tr>
-                                        <td colspan="2"> Power: {cardData.power} </td>
+                                        <td colSpan="2"> Power: {cardData.power} </td>
                                         </tr>
                                         <tr>
-                                        <td colspan="2"> Toughness: {cardData.toughness}</td>
+                                        <td colSpan="2"> Toughness: {cardData.toughness}</td>
                                         </tr>
                                     </>
                                     :
@@ -82,11 +82,11 @@ const CardInfo = (props) => {
     }
 
     const renderEditOrAddButton = () => {
-        console.log(props.origin);
+        // console.log(props.origin);
         return (
             <>
                 {props.origin == "deck" ?
-                    <button onClick={() => {props.getNewCard(cardData); console.log(cardData)}}> Add {cardData.name} To Deck</button>
+                    <button onClick={() => {props.getNewCard(cardData)}}> Add {cardData.name} To Deck</button>
                     :
                     null
                 }
