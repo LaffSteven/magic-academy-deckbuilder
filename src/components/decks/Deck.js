@@ -34,6 +34,8 @@ const Deck = (props) => {
 
 export default Deck
 
+// Erik Old Code //
+
 // const cards = () => {
 //
 //   for(let i = 0; i<deck.cardList.length; i++){

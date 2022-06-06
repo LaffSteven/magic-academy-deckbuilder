@@ -1,3 +1,7 @@
+button {
+    cursor: pointer;
+}
+
 .flex-box {
     display: flex;
 }
@@ -42,21 +46,66 @@
     text-align: center;
 }
 
+.width-100 {
+    width: 100%;
+}
+
+.width-75 {
+    width: 75%;
+}
+
+.glassify {
+    background: rgba(255, 255, 255, 0.75);
+    border-radius: 2em;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
+
+.modal {
+    z-index: 999;
+}
+
+.clickable:hover {
+    cursor: pointer;
+}
+
+#header-bar {
+    border-radius: 0;
+}
+
+#card-section {
+    z-index: 100;
+}
+
+#cards-card-search {
+    height: 800px;
+    width: 75%;
+    padding: 2em;
+    overflow-y: scroll;
+}
+
 #card-index-list {
     max-height: 800px;
+    padding-left: 2em;
+    padding-right: 2em;
 }
 
 #load-more-cards-button {
     width: 200px;
-    height: 100px;
+    height: 60px;
+    margin: 1em;
+    border-radius: 1em;
 }
 
 #card-info-overlay {
-    position: fixed;
+    height: 100%;
+    width: 100%;
+    position: absolute;
     left: 0;
+    right: 0;
     bottom: 0;
     top: 0;
-    right: 0;
     background-color: rgba(0,0,0, .5);
     backdrop-filter: blur(6px);
     display: flex;
@@ -97,6 +146,12 @@
 
 #card-data-image {
     width: 400px;
+}
+
+#deck-section {
+    z-index: -1;
+    width: 75%;
+    margin: auto;
 }
 
 #deck-card-list {

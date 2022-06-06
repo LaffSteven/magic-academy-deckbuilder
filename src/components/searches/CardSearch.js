@@ -1,5 +1,5 @@
 import React from 'react';
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import axios from 'axios';
 import Card from '../cards/Card.js';
 import CardInfo from '../cards/CardInfo.js';
@@ -30,10 +30,10 @@ const CardSearch = (props) => {
         setSearchTerm(event.target.value);
     }
 
-    const renderSearchResults = () => {
+    const renderSearch = () => {
         return (
             <>
-                <div className="flex-box flex-row flex-wrap justify-spacearound">
+                <div className={props.classes} id={props.id}>
                     {searchResults.map((card) => {
                         // console.log(card.name);
                         return(
@@ -44,7 +44,7 @@ const CardSearch = (props) => {
                                 null
                             }
                             {props.origin == "cards" ?
-                                <div key={card.id} > <Card card={card} origin={props.origin} toggleCardInfo={() => {toggleCardInfo()}}/> </div>
+                                <div key={card.id}> <Card card={card} origin={props.origin} toggleCardInfo={() => {toggleCardInfo()}}/> </div>
                             :
                                 null
                             }
@@ -59,21 +59,19 @@ const CardSearch = (props) => {
 
     const toggleCardInfo = () => {
         setShowCardInfo(!showCardInfo);
-        console.log(showCardInfo);
-        console.log(props.origin);
+        // console.log(showCardInfo);
+        // console.log(props.origin);
     }
 
     return (
-    <>
-        <form onSubmit={handleSearchSubmit}>
-            Card Name: <input type="text" onChange={handleSearchTermChange}/>
-            <input type="submit" value="Search"/>
-        </form>
-        <br/>
-        <hr/>
-
-        {renderSearchResults()}
-    </>
+        <>
+            <form onSubmit={handleSearchSubmit}>
+                Card Name: <input type="text" onChange={handleSearchTermChange}/>
+                <input className="clickable" type="submit" value="Search"/>
+            </form>
+            <br/>
+            {renderSearch()}
+        </>
     )
 
 }
