@@ -27,8 +27,7 @@ const Decks = () => {
               {deckList.map((deck) => {
                   return(
                     <>
-                      <li key={deck._id}> <Deck deck={deck}/>
-                      <button onClick={() => {setCurrentTab("edit-deck"); setCurrentDeck(deck); console.log(currentTab);}}>Edit Deck</button>
+                      <li key={deck._id}> <Deck deck={deck} currentTab={currentTab} setEditTab={() => {setCurrentTab("edit-deck"); setCurrentDeck(deck)}}/>
                       </li>
                       </>
                   )

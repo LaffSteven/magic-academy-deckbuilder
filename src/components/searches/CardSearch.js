@@ -35,7 +35,7 @@ const CardSearch = (props) => {
             <>
                 <div className="flex-box flex-row flex-wrap justify-spacearound">
                     {searchResults.map((card) => {
-                        console.log(card.name);
+                        // console.log(card.name);
                         return(
                             <>
                             {props.origin == "deck" ?

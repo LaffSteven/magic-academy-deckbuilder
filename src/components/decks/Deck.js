@@ -13,12 +13,20 @@ const Deck = (props) => {
 
     return (
         <div>
-          <p>{deck.name}</p>
-          <p>{deck.cardList.length} Cards in Deck</p>
+            <h3>{deck.name}</h3>
+            {props.currentTab === "deck-index" ?
+            <button onClick={props.setEditTab}>Edit Deck</button>
+            :
+            null
+            }
 
           <br/>
+        {props.currentTab === "edit-deck" ?
+            <EditDeck deckData={deck} deckDelete={props.deckDelete} currentTab={props.currentTab}/>
+        :
+            null
+        }
 
-          <EditDeck deckData={deck} deckDelete={props.deckDelete} currentTab={props.currentTab}/>
 
         </div>
     )
