@@ -22,17 +22,15 @@ const EditDeck = (props) => {
       setCardList([...cardList, {card_id:newCard._id, card_name:newCard.name}])
   }
 
-  const saveDeckChanges = () => {
-      console.log(cardList);
+  const saveDeckChanges = (event) => {
+      console.log("Saved Changes");
       axios.put(`https://magic-academy-api.herokuapp.com/decks/${deckData._id}`,
           {
             name: deckData.name,
             cardList: cardList
           }
       )
-      return(
-          props.setDeckList
-      )
+
   }
 
 
@@ -79,7 +77,7 @@ const EditDeck = (props) => {
                     )
                 })}
             </ul>
-            <button onClick={() => {saveDeckChanges()}}> Save Changes </button>
+            <button onClick={(event) => {saveDeckChanges()}}> Save Changes </button>
           </section>
         <section id="deck-card-search">
             {renderCardSearch()}

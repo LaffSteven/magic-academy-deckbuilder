@@ -11,6 +11,7 @@ const Decks = () => {
   const [deckName, setDeckName] = useState()
   const [currentTab, setCurrentTab] = useState("deck-index")
   const [currentDeck, setCurrentDeck] = useState({})
+  const [allowGet, setAllowGet] = useState(false)
 
   useEffect(() => {
     axios.get('https://magic-academy-api.herokuapp.com/decks').then((response) => {
@@ -18,11 +19,12 @@ const Decks = () => {
     })
   }, [])
 
-  const getDeckList = () => {
-      axios.get('https://magic-academy-api.herokuapp.com/decks').then((response) => {
-        setDeckList(response.data)
-      })
-  }
+    const getDeckList = () => {
+        console.log("ran get decks");
+        axios.get('https://magic-academy-api.herokuapp.com/decks').then((response) => {
+            setDeckList(response.data)
+        })
+    }
 
   const renderDecks = () => {
 
@@ -33,7 +35,7 @@ const Decks = () => {
               {deckList.map((deck) => {
                   return(
                     <>
-                      <li key={deck._id}> <Deck deck={deck} currentTab={currentTab} setEditTab={() => {setCurrentTab("edit-deck"); setCurrentDeck(deck)}} getDeckList={getDeckList()}/>
+                      <li key={deck._id}> <Deck deck={deck} currentTab={currentTab} setEditTab={() => {setCurrentTab("edit-deck"); setCurrentDeck(deck)}}/>
                       </li>
                       </>
                   )
@@ -82,6 +84,9 @@ const Decks = () => {
 
   const handleTabChange = (tab) => {
       setCurrentTab(tab);
+      axios.get('https://magic-academy-api.herokuapp.com/decks').then((response) => {
+        setDeckList(response.data)
+      })
   }
 
 
