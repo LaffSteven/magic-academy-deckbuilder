@@ -1,3 +1,7 @@
+button {
+    cursor: pointer;
+}
+
 .flex-box {
     display: flex;
 }
@@ -60,6 +64,10 @@
 
 .modal {
     z-index: 999;
+}
+
+.clickable:hover {
+    cursor: pointer;
 }
 
 #card-section {

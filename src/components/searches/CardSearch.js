@@ -33,7 +33,7 @@ const CardSearch = (props) => {
     const renderSearchResults = () => {
         return (
             <>
-                <div className="flex-box flex-row flex-wrap justify-spacearound glassify">
+                <div className="flex-box flex-row flex-wrap justify-spacearound">
                     {searchResults.map((card) => {
                         // console.log(card.name);
                         return(
@@ -67,10 +67,9 @@ const CardSearch = (props) => {
     <>
         <form onSubmit={handleSearchSubmit}>
             Card Name: <input type="text" onChange={handleSearchTermChange}/>
-            <input type="submit" value="Search"/>
+            <input className="clickable" type="submit" value="Search"/>
         </form>
         <br/>
-        <hr/>
 
         {renderSearchResults()}
     </>

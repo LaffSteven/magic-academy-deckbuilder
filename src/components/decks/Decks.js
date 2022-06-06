@@ -103,7 +103,7 @@ const Decks = () => {
           <section id="add-deck-form">
               <form onSubmit={addDeck}>
                   Name: <input type="text" onChange={handleUpdateDeckName}/>
-                  <input type="submit" value="Add Deck"/>
+                  <input className="clickable" type="submit" value="Add Deck"/>
               </form>
           </section>
           :
