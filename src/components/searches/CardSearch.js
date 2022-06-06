@@ -1,5 +1,5 @@
 import React from 'react';
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import axios from 'axios';
 import Card from '../cards/Card.js';
 import CardInfo from '../cards/CardInfo.js';
@@ -33,7 +33,7 @@ const CardSearch = (props) => {
     const renderSearchResults = () => {
         return (
             <>
-                <div className="flex-box flex-row flex-wrap justify-spacearound">
+                <div className="flex-box flex-row flex-wrap justify-spacearound glassify">
                     {searchResults.map((card) => {
                         // console.log(card.name);
                         return(

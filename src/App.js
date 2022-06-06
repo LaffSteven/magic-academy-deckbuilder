@@ -21,6 +21,9 @@ const App = () => {
 
     return(
     <>
+        <section id="header-bar">
+
+        </section>
         <section id="card-section" className="flex-box flex-column flex-nowrap width-100 justify-content-center align-items-center">
             <Cards />
         </section>

@@ -41,7 +41,7 @@ const Cards = () => {
     const renderCardIndex = () => {
         return (
         <>
-            <div className="flex-box flex-column flex-nowrap justify-content-spacearound align-items-center">
+            <div className="flex-box flex-column flex-nowrap justify-content-spacearound align-items-center width-75 glassify">
                 <h2>Card Index</h2>
                 <div id="card-index-list" className="flex-box flex-row flex-wrap justify-spacearound overflow-y-scroll">
                     {cards.map((card) => {
