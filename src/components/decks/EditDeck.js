@@ -18,23 +18,6 @@ const EditDeck = (props) => {
   const [newCard, setNewCard] = useState({});
   const [updatedDeckName, setUpdatedDeckName] = useState(props.deckData.name)
 
-  let cardStr = ``
-
-  useEffect(()=>{
-      // axios.get(`https://magic-academy-api.herokuapp.com/cards`)
-      //     .then((response) => {
-      //         // console.log(response.data);
-      //         setCards(response.data);
-      // })
-      if (cards.length === 0) {
-          axios.get(`https://magic-academy-api.herokuapp.com/cards?skip=0`)
-              .then((response) => {
-                  setCardSkip(response.data.length)
-                  setCards(response.data);
-          })
-      }
-  }, []);
-
   const renderCardList = () => {
       setCardList([...cardList, {card_id:newCard._id, card_name:newCard.name}])
   }
@@ -57,7 +40,7 @@ const EditDeck = (props) => {
   }
 
   const deckNameUpdate = (deckData) => {
-    axios.put(`http://localhost:3000/decks/${deckData._id}`,
+    axios.put(`https://magic-academy-api.herokuapp.com/decks/${deckData._id}`,
     {
         name: updatedDeckName
     })
