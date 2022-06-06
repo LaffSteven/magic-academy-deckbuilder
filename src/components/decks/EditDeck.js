@@ -16,49 +16,34 @@ const EditDeck = (props) => {
   const [showCardInfo, setShowCardInfo] = useState(false);
   const [arr2, setArr2] = useState([])
   const [newCard, setNewCard] = useState({});
-  const [updatedDeckName, setUpdatedDeckName] = useState(props.deckData)
-
-  let cardStr = ``
-
-  useEffect(()=>{
-      // axios.get(`https://magic-academy-api.herokuapp.com/cards`)
-      //     .then((response) => {
-      //         // console.log(response.data);
-      //         setCards(response.data);
-      // })
-      if (cards.length === 0) {
-          axios.get(`https://magic-academy-api.herokuapp.com/cards?skip=0`)
-              .then((response) => {
-                  setCardSkip(response.data.length)
-                  setCards(response.data);
-          })
-      }
-  }, []);
+  const [updatedDeckName, setUpdatedDeckName] = useState(props.deckData.name)
 
   const renderCardList = () => {
       setCardList([...cardList, {card_id:newCard._id, card_name:newCard.name}])
   }
 
-  const saveDeckChanges = (deckID) => {
-      axios.put(`https://magic-academy-api.herokuapp.com/decks/${deckID}`,
+  const saveDeckChanges = (event) => {
+      console.log("Saved Changes");
+      axios.put(`https://magic-academy-api.herokuapp.com/decks/${deckData._id}`,
           {
-
+            name: deckData.name,
+            cardList: cardList
           }
       )
-      // setCardList([...cardList, {card}])
+
   }
 
 
   const renderCardSearch = () => {
     return (
-        <CardSearch origin={"deck"} cardList={cardList} getNewCard={(card) => {setNewCard(card)}}/>
+        <CardSearch origin={"deck"} cardList={cardList} getNewCard={(card) => {setCardList([...cardList, {card_id:card._id, card_name:card.name}])}}/>
     )
   }
 
   const deckNameUpdate = (deckData) => {
-    axios.put(`http://localhost:3000/decks/${deckData._id}`,
+    axios.put(`https://magic-academy-api.herokuapp.com/decks/${deckData._id}`,
     {
-      name: updatedDeckName
+        name: updatedDeckName
     })
   }
   const handleUpdateDeckName = (event) => {
@@ -71,25 +56,36 @@ const EditDeck = (props) => {
       }
   }
 
+// onClick={() => {setCardList(cardList.splice((cardList.indexOf(card), 1)))}}
+
   return(
-      <>
-          <section id="card-list">
-              <ul>
-              {cardList.map((card) => {
-                  <li>{card.card_name}</li>
-              })}
-              </ul>
+      <div className="flex-box flex-row flex-nowrap justify-spacearound align-items-center">
+          <section id="deck-card-list" className="flex-box flex-column justify-spacearound align-items-center">
+            <div>
+                <form onSubmit={(event) => {deckNameUpdate(deckData)}}>
+                Update Deck Name: <input type="text" value={updatedDeckName} onChange={handleUpdateDeckName}/>
+                <input type="submit" value="change Name"/>
+                </form><br/>
+            </div>
+            <ul>
+                {cardList.map((card) => {
+                    return (
+                        <li>
+                            {card.card_name} &nbsp; &nbsp;
+                            <button onClick={() => {setCardList(cardList.splice((cardList.indexOf(card), 1)))}}>remove</button>
+                        </li>
+                    )
+                })}
+            </ul>
+            <button onClick={(event) => {saveDeckChanges()}}> Save Changes </button>
           </section>
-        <section id="card-search">
+        <section id="deck-card-search">
             {renderCardSearch()}
         </section>
-        <form onSubmit={(event) => {deckNameUpdate(deckData)}}>
-        Update Deck Name: <input type="text" onChange={handleUpdateDeckName}/>
-        <input type="submit" value="change Name"/>
-        </form><br/>
+
         {props.currentTab == "edit-deck" ? <button onClick={props.deckDelete}> DELETE DECK </button> : null}
 
-      </>
+      </div>
   )
 
 }

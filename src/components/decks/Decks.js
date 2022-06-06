@@ -11,12 +11,20 @@ const Decks = () => {
   const [deckName, setDeckName] = useState()
   const [currentTab, setCurrentTab] = useState("deck-index")
   const [currentDeck, setCurrentDeck] = useState({})
+  const [allowGet, setAllowGet] = useState(false)
 
   useEffect(() => {
     axios.get('https://magic-academy-api.herokuapp.com/decks').then((response) => {
       setDeckList(response.data)
     })
   }, [])
+
+    const getDeckList = () => {
+        console.log("ran get decks");
+        axios.get('https://magic-academy-api.herokuapp.com/decks').then((response) => {
+            setDeckList(response.data)
+        })
+    }
 
   const renderDecks = () => {
 
@@ -27,8 +35,7 @@ const Decks = () => {
               {deckList.map((deck) => {
                   return(
                     <>
-                      <li key={deck._id}> <Deck deck={deck}/>
-                      <button onClick={() => {setCurrentTab("edit-deck"); setCurrentDeck(deck); console.log(currentTab);}}>Edit Deck</button>
+                      <li key={deck._id}> <Deck deck={deck} currentTab={currentTab} setEditTab={() => {setCurrentTab("edit-deck"); setCurrentDeck(deck)}}/>
                       </li>
                       </>
                   )
@@ -61,13 +68,7 @@ const Decks = () => {
     axios.post('https://magic-academy-api.herokuapp.com/decks',
       {
         name: deckName,
-        cardList: [
-            {
-                card_id: "",
-                card_name: "",
-                quantity: null
-            }
-        ]
+        cardList: []
       }
   ).then(() => {
     axios.get('https://magic-academy-api.herokuapp.com/decks').then((response) => {
@@ -83,6 +84,9 @@ const Decks = () => {
 
   const handleTabChange = (tab) => {
       setCurrentTab(tab);
+      axios.get('https://magic-academy-api.herokuapp.com/decks').then((response) => {
+        setDeckList(response.data)
+      })
   }
 
 
@@ -93,6 +97,20 @@ const Decks = () => {
       <nav>
           <button onClick={(event) =>{handleTabChange("deck-index")}}>Deck List</button>
       </nav>
+      <br/>
+      <br/>
+      {currentTab == "deck-index" ?
+          <section id="add-deck-form">
+              <form onSubmit={addDeck}>
+                  Name: <input type="text" onChange={handleUpdateDeckName}/>
+                  <input type="submit" value="Add Deck"/>
+              </form>
+          </section>
+          :
+          null
+      }
+
+
       {currentTab == "deck-index" ? renderDecks() : null}
       {currentTab == "edit-deck" ? renderDeck(currentDeck) : null}
 
@@ -104,11 +122,3 @@ const Decks = () => {
 }
 
 export default Decks
-
-
-
-// <form onSubmit={addDeck}>
-// Name: <input type="text" onChange={handleUpdateDeckName}/>
-// <input type="submit" value="Add Deck"/>
-// </form>
-// {renderDecks()}

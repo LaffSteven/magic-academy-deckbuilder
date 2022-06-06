@@ -38,6 +38,10 @@
     overflow-y: scroll;
 }
 
+.text-center {
+    text-align: center;
+}
+
 #card-index-list {
     max-height: 800px;
 }
@@ -93,4 +97,16 @@
 
 #card-data-image {
     width: 400px;
+}
+
+#deck-card-list {
+    width: 500px;
+    margin: 2em;
+    border: 1px solid black;
+}
+
+#deck-card-search {
+    width: 500px;
+    margin: 2em;
+    border: 1px solid black;
 }
