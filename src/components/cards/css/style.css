@@ -58,6 +58,14 @@
     -webkit-backdrop-filter: blur(15px);
 }
 
+.modal {
+    z-index: 999;
+}
+
+#card-section {
+    z-index: 100;
+}
+
 #card-index-list {
     max-height: 800px;
     padding-left: 2em;
@@ -72,13 +80,13 @@
 }
 
 #card-info-overlay {
-    height: 100vh;
+    height: 100%;
     width: 100%;
     position: fixed;
     left: 0;
+    right: 0;
     bottom: 0;
     top: 0;
-    right: 0;
     background-color: rgba(0,0,0, .5);
     backdrop-filter: blur(6px);
     display: flex;
@@ -122,6 +130,7 @@
 }
 
 #deck-section {
+    z-index: -1;
     width: 75%;
     margin: auto;
 }
