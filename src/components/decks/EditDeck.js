@@ -102,7 +102,7 @@ const EditDeck = (props) => {
             {renderCardSearch()}
         </section>
 
-        {props.currentTab == "edit-deck" ? <button onClick={props.deckDelete}> DELETE DECK </button> : null}
+        {props.currentTab == "edit-deck" ? <button onClick={props.deckDelete} height="50"> DELETE DECK </button> : null}
 
       </div>
   )
