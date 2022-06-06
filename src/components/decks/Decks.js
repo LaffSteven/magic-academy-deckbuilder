@@ -29,19 +29,19 @@ const Decks = () => {
   const renderDecks = () => {
 
       return (
-          <>
-          <h2>Deck List</h2>
-          <ul>
-              {deckList.map((deck) => {
-                  return(
-                    <>
-                      <li key={deck._id}> <Deck deck={deck} currentTab={currentTab} setEditTab={() => {setCurrentTab("edit-deck"); setCurrentDeck(deck)}}/>
-                      </li>
-                      </>
-                  )
-              })}
-          </ul>
-          </>
+          <div id="deck-list">
+              <h2>Deck List</h2>
+              <ul>
+                  {deckList.map((deck) => {
+                      return(
+                        <>
+                          <li key={deck._id}> <Deck deck={deck} currentTab={currentTab} setEditTab={() => {setCurrentTab("edit-deck"); setCurrentDeck(deck)}}/>
+                          </li>
+                        </>
+                      )
+                  })}
+              </ul>
+          </div>
       )
   }
 

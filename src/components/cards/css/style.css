@@ -72,6 +72,8 @@
 }
 
 #card-info-overlay {
+    height: 100vh;
+    width: 100%;
     position: fixed;
     left: 0;
     bottom: 0;
@@ -117,6 +119,11 @@
 
 #card-data-image {
     width: 400px;
+}
+
+#deck-section {
+    width: 75%;
+    margin: auto;
 }
 
 #deck-card-list {

@@ -28,9 +28,8 @@ const App = () => {
             <Cards />
         </section>
         <br/>
-        <hr/>
         <br/>
-        <section id="deck-section" className="flex-box flex-column flex-nowrap width-100 justify-content-center align-items-center">
+        <section id="deck-section" className="flex-box flex-column flex-nowrap width-100 justify-content-center align-items-center glassify">
             <Decks />
         </section>
     </>

@@ -37,6 +37,11 @@ const Card = (props) => {
                 :
                 null
             }
+            { props.origin == "deck-list" ?
+                <CardInfo cardData={card} toggleCardInfo={props.toggleCardInfo} origin={props.origin} hideCardInfo={() => {setShowCardInfo(false)}}/>
+                :
+                null
+            }
             </div>
 
         )
