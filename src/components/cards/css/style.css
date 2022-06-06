@@ -1,0 +1,112 @@
+.flex-box {
+    display: flex;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.flex-nowrap {
+    flex-wrap: nowrap;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-spacebetween {
+    justify-content: space-between;
+}
+
+.justify-spacearound {
+    justify-content: space-around;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.overflow-y-scroll {
+    overflow-y: scroll;
+}
+
+.text-center {
+    text-align: center;
+}
+
+#card-index-list {
+    max-height: 800px;
+}
+
+#load-more-cards-button {
+    width: 200px;
+    height: 100px;
+}
+
+#card-info-overlay {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    background-color: rgba(0,0,0, .5);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#card-info-container {
+    width: 800px;
+    height: 800px;
+    background-color: rgba(255, 240, 240, .99);
+}
+
+#card-info-header, #card-info-footer {
+    padding: 1em;
+}
+
+#card-info-body {
+    padding: 1em;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+#card-data-table {
+    border-spacing: .25em;
+    background-color: rgba(255, 255, 255, 1);
+    height: 558px;
+}
+#card-data-table tr, td {
+    outline: 1px solid black;
+    text-align: center;
+}
+#card-data-table td {
+    padding-top: .5em;
+    padding-bottom: .5em;
+    min-width: 5em;
+}
+
+#card-data-image {
+    width: 400px;
+}
+
+#deck-card-list {
+    width: 500px;
+    margin: 2em;
+    border: 1px solid black;
+}
+
+#deck-card-search {
+    width: 500px;
+    margin: 2em;
+    border: 1px solid black;
+}
