@@ -21,8 +21,13 @@ const App = () => {
 
     return(
     <>
-        <section id="header-bar">
-
+        <section id="header-bar" className="flex-box flex-row justify-spacebetween glassify">
+            <div>
+                <h1>Welcome to the Magic Academy</h1>
+            </div>
+            <div>
+                <img src="https://www.corbytechnicalschool.org/_files/images/B34A44C0A7347024A4D703C82A9B5BB9.gif" alt="mtg logo"/>
+            </div>
         </section>
         <section id="card-section" className="flex-box flex-column flex-nowrap width-100 justify-content-center align-items-center">
             <Cards />

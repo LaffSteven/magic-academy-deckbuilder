@@ -70,8 +70,19 @@ button {
     cursor: pointer;
 }
 
+#header-bar {
+    border-radius: 0;
+}
+
 #card-section {
     z-index: 100;
+}
+
+#cards-card-search {
+    height: 800px;
+    width: 75%;
+    padding: 2em;
+    overflow-y: scroll;
 }
 
 #card-index-list {
@@ -90,7 +101,7 @@ button {
 #card-info-overlay {
     height: 100%;
     width: 100%;
-    position: fixed;
+    position: absolute;
     left: 0;
     right: 0;
     bottom: 0;

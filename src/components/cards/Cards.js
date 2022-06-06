@@ -57,7 +57,7 @@ const Cards = () => {
         )
     }
     const renderCardSearch = () => {
-        return <CardSearch />
+        return <CardSearch origin={"cards"} classes="glassify flex-box flex-row flex-wrap justify-spacearound" id={"cards-card-search"}/>
     }
     const renderNewCard = () => {
         return <NewCardForm />
