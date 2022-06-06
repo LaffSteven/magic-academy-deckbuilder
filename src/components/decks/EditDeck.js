@@ -30,6 +30,9 @@ const EditDeck = (props) => {
             cardList: cardList
           }
       )
+      return(
+          props.setDeckList
+      )
   }
 
 

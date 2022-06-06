@@ -22,7 +22,7 @@ const Deck = (props) => {
 
           <br/>
         {props.currentTab === "edit-deck" ?
-            <EditDeck deckData={deck} deckDelete={props.deckDelete} currentTab={props.currentTab}/>
+            <EditDeck deckData={deck} deckDelete={props.deckDelete} currentTab={props.currentTab} getDeckList={props.getDeckList}/>
         :
             null
         }

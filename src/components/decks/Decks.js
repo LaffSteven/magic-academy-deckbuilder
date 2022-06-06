@@ -18,6 +18,12 @@ const Decks = () => {
     })
   }, [])
 
+  const getDeckList = () => {
+      axios.get('https://magic-academy-api.herokuapp.com/decks').then((response) => {
+        setDeckList(response.data)
+      })
+  }
+
   const renderDecks = () => {
 
       return (
@@ -27,7 +33,7 @@ const Decks = () => {
               {deckList.map((deck) => {
                   return(
                     <>
-                      <li key={deck._id}> <Deck deck={deck} currentTab={currentTab} setEditTab={() => {setCurrentTab("edit-deck"); setCurrentDeck(deck)}}/>
+                      <li key={deck._id}> <Deck deck={deck} currentTab={currentTab} setEditTab={() => {setCurrentTab("edit-deck"); setCurrentDeck(deck)}} getDeckList={getDeckList()}/>
                       </li>
                       </>
                   )
