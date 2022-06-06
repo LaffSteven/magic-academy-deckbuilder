@@ -50,10 +50,14 @@ const EditDeck = (props) => {
     setUpdatedDeckName(event.target.value)
   }
 
-  const renderEditDeckPage = () => {
-      return {
-
-      }
+  const handleRemoveCard = (card) => {
+      const arr = cardList;
+      console.log(arr);
+      console.log(arr.indexOf(card));
+      arr.splice(arr.indexOf(card), 1)
+      // console.log(arr);
+      setCardList([...arr]);
+      console.log(cardList);
   }
 
 // onClick={() => {setCardList(cardList.splice((cardList.indexOf(card), 1)))}}
@@ -70,9 +74,9 @@ const EditDeck = (props) => {
             <ul>
                 {cardList.map((card) => {
                     return (
-                        <li>
+                        <li key={card._id}>
                             {card.card_name} &nbsp; &nbsp;
-                            <button onClick={() => {setCardList(cardList.splice((cardList.indexOf(card), 1)))}}>remove</button>
+                            <button onClick={(event) => {handleRemoveCard(card)}}>remove</button>
                         </li>
                     )
                 })}
