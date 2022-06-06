@@ -72,6 +72,8 @@ const EditDeck = (props) => {
       }
   }
 
+// onClick={() => {setCardList(cardList.splice((cardList.indexOf(card), 1)))}}
+
   return(
       <div className="flex-box flex-row flex-nowrap justify-spacearound align-items-center">
           <section id="deck-card-list" className="flex-box flex-column justify-spacearound align-items-center">
@@ -83,7 +85,12 @@ const EditDeck = (props) => {
             </div>
             <ul>
                 {cardList.map((card) => {
-                    return <li>{card.card_name}</li>
+                    return (
+                        <li>
+                            {card.card_name} &nbsp; &nbsp;
+                            <button onClick={() => {setCardList(cardList.splice((cardList.indexOf(card), 1)))}}>remove</button>
+                        </li>
+                    )
                 })}
             </ul>
             <button onClick={() => {saveDeckChanges()}}> Save Changes </button>

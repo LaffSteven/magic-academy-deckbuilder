@@ -13,7 +13,7 @@ const Deck = (props) => {
 
     return (
         <div>
-            <h3>{deck.name}</h3>
+            <h3 className="text-center">{deck.name}</h3>
             {props.currentTab === "deck-index" ?
             <button onClick={props.setEditTab}>Edit Deck</button>
             :

@@ -60,13 +60,7 @@ const Decks = () => {
     axios.post('https://magic-academy-api.herokuapp.com/decks',
       {
         name: deckName,
-        cardList: [
-            {
-                card_id: "",
-                card_name: "",
-                quantity: null
-            }
-        ]
+        cardList: []
       }
   ).then(() => {
     axios.get('https://magic-academy-api.herokuapp.com/decks').then((response) => {
@@ -92,6 +86,20 @@ const Decks = () => {
       <nav>
           <button onClick={(event) =>{handleTabChange("deck-index")}}>Deck List</button>
       </nav>
+      <br/>
+      <br/>
+      {currentTab == "deck-index" ?
+          <section id="add-deck-form">
+              <form onSubmit={addDeck}>
+                  Name: <input type="text" onChange={handleUpdateDeckName}/>
+                  <input type="submit" value="Add Deck"/>
+              </form>
+          </section>
+          :
+          null
+      }
+
+
       {currentTab == "deck-index" ? renderDecks() : null}
       {currentTab == "edit-deck" ? renderDeck(currentDeck) : null}
 
@@ -103,11 +111,3 @@ const Decks = () => {
 }
 
 export default Decks
-
-
-
-// <form onSubmit={addDeck}>
-// Name: <input type="text" onChange={handleUpdateDeckName}/>
-// <input type="submit" value="Add Deck"/>
-// </form>
-// {renderDecks()}
